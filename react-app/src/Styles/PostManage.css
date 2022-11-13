@@ -1,0 +1,19 @@
+#adContainers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adContainer {
+  width: 49%;
+}
+
+#awaitingApproval,
+#Approved {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#popup-block {
+  display: none;
+}

@@ -1,0 +1,40 @@
+#formHeader {
+  font-weight: bold;
+  color: #1e2c41;
+  cursor: default;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+#educationAttainment,
+#experienceLevel {
+  height: 100%;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+}
+
+.row {
+  margin: 20px;
+}
+
+.subHeader {
+  margin-bottom: 10px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.postFormBtn {
+  border: 1px solid #1f2c41;
+  border-radius: 3px;
+  background-color: #1f2c41;
+  display: inline-block;
+  padding: 10px;
+  color: #62dafb;
+  cursor: pointer;
+  font-weight: bold;
+}

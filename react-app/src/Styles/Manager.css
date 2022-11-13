@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#profile-menu {
+  display: inline-block;
+}
+
+#profile-menu > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+#popup-back {
+  background-color: rgba(0, 0, 0, 0.183);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 8;
+  display: none;
+  cursor: pointer;
+}

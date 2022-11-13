@@ -1,0 +1,44 @@
+.advert {
+  background-color: #1e2c41;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+
+.advert:hover {
+  border-bottom: 2px solid #62dafb;
+}
+
+.advert:nth-child(even) {
+  background-color: #37527a;
+}
+
+.advertInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.advertInfo > * {
+}
+
+.dateInfo {
+  display: flex;
+}
+
+.advertTitle {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.advertPosted,
+.advertDate,
+.advertTitle {
+  padding: 0;
+  margin: 0;
+}
+
+.advertPosted {
+  margin-right: 10px;
+}

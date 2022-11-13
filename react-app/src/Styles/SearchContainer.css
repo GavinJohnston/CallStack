@@ -1,0 +1,6 @@
+.searchContainer {
+  height: 10vh;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.478);
+  box-shadow: 0.5px 0.5px 2px 2px rgba(0, 0, 0, 0.106);
+  margin-bottom: 30px;
+}

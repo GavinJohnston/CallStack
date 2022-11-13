@@ -1,0 +1,36 @@
+.listItem {
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+}
+
+.ItemHeaderArea {
+  background-color: #1f2c41;
+  color: white;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
+.ItemHeaderArea > h2 {
+  color: #62dafb;
+  font-weight: bold;
+}
+
+.ItemInfoArea {
+  display: flex;
+  padding: 10px 10px;
+}
+
+.ItemDescArea {
+  margin: 0 10px 10px 10px;
+}
+
+.iconContainer {
+  margin: 0 10px;
+}
+
+.iconContainer:first-child {
+  margin-left: 0;
+}

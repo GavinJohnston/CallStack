@@ -1,0 +1,76 @@
+#viewPanel {
+  display: block;
+  width: 60%;
+  height: 100%;
+  margin-left: auto;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+}
+
+#viewPanelHeader {
+  background-color: #1f2c41;
+  color: white;
+  padding: 20px;
+  cursor: default;
+  position: relative;
+  border-radius: 5px 5px 0 0;
+}
+
+.bookmarkContainer {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+#bookmarkIcon {
+  size: 2em;
+  cursor: pointer;
+  height: 3em;
+  stroke: #62dafb;
+  stroke-width: 20px;
+  color: rgba(255, 217, 0, 0);
+}
+
+#viewHeaderJob {
+  color: #62dafb;
+  font-weight: bold;
+}
+
+#viewPanelDescriptionArea {
+  margin: 20px;
+  cursor: default;
+}
+
+#viewPanelList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panelListItem {
+  display: flex;
+  margin: 7.5px 0;
+  cursor: default;
+}
+
+.iconContainer {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#listItemBenefits {
+  cursor: pointer;
+}
+
+#applyNow {
+  border: 1px solid #1f2c41;
+  border-radius: 3px;
+  background-color: #1f2c41;
+  display: inline-block;
+  padding: 10px;
+  color: #62dafb;
+  cursor: pointer;
+  font-weight: bold;
+}
