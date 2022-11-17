@@ -1,9 +1,13 @@
 ﻿using System.IO;
 using CallstackAPI.Models;
-using CallstackAPI.Services;
+//using CallstackAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 namespace CallstackAPI.Controllers;
@@ -14,23 +18,71 @@ public class CallstackController : ControllerBase
 {
 
     private readonly CallstackContext _context;
-    private readonly IdentityLoginService _IdentityLoginService;
-    private readonly IdentityRegisterService _IdentityRegisterService;
+    private readonly IUserStore<ApplicationUser> _userStore;
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IUserEmailStore<ApplicationUser> _emailStore;
+    private readonly IEmailSender _emailSender;
 
-    public CallstackController(CallstackContext context, IdentityLoginService identityLoginService, IdentityRegisterService identityRegisterService)
+
+    public CallstackController(CallstackContext context,
+                UserManager<ApplicationUser> userManager,
+                IUserStore<ApplicationUser> userStore,
+                SignInManager<ApplicationUser> signInManager,
+                IEmailSender emailSender)
     {
         _context = context;
-        _IdentityLoginService = identityLoginService;
-        _IdentityRegisterService = identityRegisterService;
+        _userManager = userManager;
+        _userStore = userStore;
+        _emailStore = GetEmailStore();
+        _signInManager = signInManager;
+        _emailSender = emailSender;
+    }
+
+    [HttpPost]
+    [Route("Register")]
+    public async Task<ActionResult> RegisterUser(UserRegister userRegister)
+    {
+
+        var user = CreateUser();
+
+        await _userStore.SetUserNameAsync(user, userRegister.RegisterEmail, CancellationToken.None);
+        await _emailStore.SetEmailAsync(user, userRegister.RegisterEmail, CancellationToken.None);
+        var result = await _userManager.CreateAsync(user, userRegister.RegisterPassword);
+
+        return Ok(result);
     }
 
     [HttpPost]
     [Route("Login")]
-    public async Task<ActionResult> userLogin(UserLogin userLogin)
+    public async Task<ActionResult> LoginUser(UserLogin userLogin)
     {
-        await _IdentityLoginService.LoginModel.OnPostAsync(userLogin);
+        var result = await _signInManager.PasswordSignInAsync(userLogin.LoginEmail, userLogin.LoginPassword, userLogin.RememberMe, lockoutOnFailure: false);
 
-        return Ok();
+        return Ok(result);
+    }
+
+    private ApplicationUser CreateUser()
+    {
+        try
+        {
+            return Activator.CreateInstance<ApplicationUser>();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+        }
+    }
+
+    private IUserEmailStore<ApplicationUser> GetEmailStore()
+    {
+        if (!_userManager.SupportsUserEmail)
+        {
+            throw new NotSupportedException("The default UI requires a user store with email support.");
+        }
+        return (IUserEmailStore<ApplicationUser>)_userStore;
     }
 
     [HttpPost]
@@ -115,5 +167,7 @@ public class CallstackController : ControllerBase
 
         return Ok(advert);
     }
+
+
 }
 

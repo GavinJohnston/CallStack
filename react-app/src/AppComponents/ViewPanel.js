@@ -3,12 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ViewPanel(props) {
   function showBenefits() {
-    if (
-      document.getElementById("benefitsWindow").style.display == "inline-block"
-    ) {
+    if (document.getElementById("benefitsWindow").style.display == "flex") {
       document.getElementById("benefitsWindow").style.display = "none";
     } else {
-      document.getElementById("benefitsWindow").style.display = "inline-block";
+      document.getElementById("benefitsWindow").style.display = "flex";
     }
   }
 
@@ -66,26 +64,17 @@ function ViewPanel(props) {
             </div>
             {props.itemInfo.onSite}
           </li>
-          <li className="panelListItem">
+          {/* <li className="panelListItem">
             <div className="iconContainer">
               <FontAwesomeIcon icon="fa-solid fa-heart" />
             </div>
-            <div
-              id="listItemBenefits"
-              onMouseEnter={() => {
-                showBenefits();
-              }}
-              onMouseLeave={() => {
-                showBenefits();
-              }}
-            >
-              Benefits
-              <div id="benefitsWindow">{props.itemInfo.benefits}</div>
-            </div>
-          </li>
+            <div>Great Benefits</div>
+          </li> */}
         </ul>
         <h4>Description</h4>
         <p id="viewPanelDescription">{props.itemInfo.descriptionArea}</p>
+        <h4>Benefits</h4>
+        <p id="viewPanelBenefits">{props.itemInfo.benefits}</p>
         <div id="applyNow">Apply Now</div>
       </div>
     </div>

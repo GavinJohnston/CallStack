@@ -16,18 +16,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 30px;
 }
 
 #logo {
   color: white;
   margin: 0;
   text-transform: uppercase;
-  cursor: default;
+
   font-size: 1.5em;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #headerLogo {
   margin: 0 5px;
   cursor: pointer;
+}
+
+.linkBtns {
+  margin: 0 10px;
+}
+
+#logoLink {
+  text-decoration: none;
+}
+
+.btn-menu {
+  background-color: white !important;
+  font-weight: bold !important;
+  color: #1f2c41 !important;
+}
+
+.btn-menu:hover {
+  background-color: #62dafb !important;
 }

@@ -1,0 +1,24 @@
+.container-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#registerPanel {
+  width: 25vw;
+  height: 50vh;
+  margin: 50px;
+}
+
+h1 {
+  padding: 10px 0;
+  font-style: italic;
+  cursor: default;
+}
+
+#registerformPanel {
+  color: rgb(196, 0, 0);
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
