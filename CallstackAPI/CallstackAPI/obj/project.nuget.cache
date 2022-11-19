@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dNhKtiMZozT35chb9lNeYvIC7sXp3CEKmm6dVx0kQoAmdo027UA9naQMDZa6sWzvOwiPXaeS0+SEAtJL0ZKtzQ==",
+  "dgSpecHash": "fBt2kfpgbAYKMwoNpjU8mUU9XBeNnno63cflxmJLpgOiY7T/Dsc1aIyXKoqhaLC8aKNp456lNAfNsbUI/B3xJA==",
   "success": true,
   "projectFilePath": "/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/CallstackAPI.csproj",
   "expectedPackageFiles": [
@@ -10,12 +10,27 @@
     "/Users/gavin/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
     "/Users/gavin/.nuget/packages/messagepack.annotations/2.1.152/messagepack.annotations.2.1.152.nupkg.sha512",
     "/Users/gavin/.nuget/packages/messagepackanalyzer/2.1.152/messagepackanalyzer.2.1.152.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnet.identity.core/2.2.3/microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.cookies/2.2.0/microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.core/2.2.0/microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.0/microsoft.aspnetcore.cryptography.internal.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/7.0.0/microsoft.aspnetcore.cryptography.keyderivation.7.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.dataprotection/2.2.0/microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/2.2.0/microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.hosting.abstractions/2.2.0/microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.hosting.server.abstractions/2.2.0/microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.http/2.2.0/microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.http.extensions/2.2.0/microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.identity/2.2.0/microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.0/microsoft.aspnetcore.identity.entityframeworkcore.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.identity.ui/7.0.0/microsoft.aspnetcore.identity.ui.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.openapi/7.0.0/microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.0/microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.bcl.asyncinterfaces/5.0.0/microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.build/17.3.2/microsoft.build.17.3.2.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.build.framework/17.3.2/microsoft.build.framework.17.3.2.nupkg.sha512",
@@ -55,12 +70,15 @@
     "/Users/gavin/.nuget/packages/microsoft.extensions.dependencymodel/7.0.0/microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.fileproviders.abstractions/7.0.0/microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.fileproviders.embedded/7.0.0/microsoft.extensions.fileproviders.embedded.7.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.extensions.hosting.abstractions/2.2.0/microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.identity.core/7.0.0/microsoft.extensions.identity.core.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.identity.stores/7.0.0/microsoft.extensions.identity.stores.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.logging/7.0.0/microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.extensions.objectpool/2.2.0/microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.extensions.webencoders/2.2.0/microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.identity.client/4.45.0/microsoft.identity.client.4.45.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.identity.client.extensions.msal/2.19.3/microsoft.identity.client.extensions.msal.2.19.3.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.identitymodel.abstractions/6.21.0/microsoft.identitymodel.abstractions.6.21.0.nupkg.sha512",
@@ -69,6 +87,7 @@
     "/Users/gavin/.nuget/packages/microsoft.identitymodel.protocols/6.21.0/microsoft.identitymodel.protocols.6.21.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.21.0/microsoft.identitymodel.protocols.openidconnect.6.21.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.identitymodel.tokens/6.21.0/microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.net.stringtools/17.3.2/microsoft.net.stringtools.17.3.2.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.netcore.platforms/1.1.1/microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.netcore.targets/1.1.3/microsoft.netcore.targets.1.1.3.nupkg.sha512",
@@ -186,6 +205,7 @@
     "/Users/gavin/.nuget/packages/system.security.cryptography.primitives/4.3.0/system.security.cryptography.primitives.4.3.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/system.security.cryptography.x509certificates/4.3.0/system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/system.security.cryptography.xml/4.5.0/system.security.cryptography.xml.4.5.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/system.security.permissions/6.0.0/system.security.permissions.6.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
@@ -203,5 +223,16 @@
     "/Users/gavin/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Identity.Core",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

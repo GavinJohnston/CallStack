@@ -282,3 +282,4 @@
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/obj/Debug/net7.0/CallstackAPI.RazorAssemblyInfo.cache
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/obj/Debug/net7.0/CallstackAPI.RazorAssemblyInfo.cs
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNet.Identity.Core.dll

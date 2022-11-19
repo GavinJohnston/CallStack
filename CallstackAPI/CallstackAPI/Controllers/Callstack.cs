@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
+using System.Security.Principal;
+using System.Security.Claims;
+using Azure.Core;
 
 namespace CallstackAPI.Controllers;
 
@@ -76,13 +78,13 @@ public class CallstackController : ControllerBase
         }
     }
 
-    private IUserEmailStore<ApplicationUser> GetEmailStore()
+    private Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser> GetEmailStore()
     {
         if (!_userManager.SupportsUserEmail)
         {
             throw new NotSupportedException("The default UI requires a user store with email support.");
         }
-        return (IUserEmailStore<ApplicationUser>)_userStore;
+        return (Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser>)_userStore;
     }
 
     [HttpPost]
@@ -114,7 +116,7 @@ public class CallstackController : ControllerBase
 
         return Ok(awaitingApproval);
     }
-
+    
     [HttpGet]
     [Route("approvedList")]
     public async Task<ActionResult<IEnumerable<Advert>>> getApprovedList()
@@ -168,6 +170,13 @@ public class CallstackController : ControllerBase
         return Ok(advert);
     }
 
+    [HttpGet]
+    [Route("Profile")]
+    public async Task<IActionResult> getProfile()
+    {
+        var user = await _userManager.GetUserAsync(User);
 
+        return Ok(User);
+    }
 }
 

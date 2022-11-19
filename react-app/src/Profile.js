@@ -1,4 +1,4 @@
-import Header from "./AppComponents/Header.js";
+import Header from "./HomeComponents/Header.js";
 import ProfileAcc from "./ProComponents/ProfileAcc.js";
 import "./Styles/Profile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -71,6 +71,21 @@ class Profile extends React.Component {
       // return <Metrics />;
     }
   };
+
+  componentDidMount() {
+    this.populateState();
+  }
+
+  async populateState() {
+    fetch(`https://localhost:7171/Profile`, {
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    }).then((res) => {
+      console.log(res);
+    });
+  }
 }
 
 export default Profile;

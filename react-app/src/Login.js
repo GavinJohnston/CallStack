@@ -1,6 +1,6 @@
 import "./Styles/Login.css";
-import Header from "./AppComponents/Header.js";
-import Footer from "./AppComponents/Footer.js";
+import Header from "./HomeComponents/Header.js";
+import Footer from "./HomeComponents/Footer.js";
 
 function Login() {
   return (
@@ -79,20 +79,24 @@ function Login() {
       },
       body: JSON.stringify(dataObject),
     })
-      .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
+      .then((r) => r.json())
       .then((obj) => {
-        if (obj.body.succeeded == false) {
-          let list = document.getElementById("loginformPanel");
-          list.innerHTML = "";
-          let listItem = document.createElement("li");
-          listItem.innerHTML = `Login failed.`;
-          list.appendChild(listItem);
-        } else {
-          window.location = "/Profile";
-        }
+        // if (obj.body.succeeded == false) {
+        //   let list = document.getElementById("loginformPanel");
+        //   list.innerHTML = "";
+        //   let listItem = document.createElement("li");
+        //   listItem.innerHTML = `Login failed.`;
+        //   list.appendChild(listItem);
+        // } else {
+        //   window.location = "/Profile";
+        // }
+
+        console.log(obj);
       })
       .catch((error) => console.error("Unable to add item.", error));
   }
 }
 
 export default Login;
+
+//.then((data) => ({ status: r.status, body: data }))

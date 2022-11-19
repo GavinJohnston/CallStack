@@ -1,12 +1,12 @@
 import "./Styles/Manager.css";
 
-import Header from "./AppComponents/Header.js";
+import Header from "./HomeComponents/Header.js";
 import Post from "./AccComponents/Post.js";
 import Popup from "./AccComponents/Popup.js";
 import PostManage from "./AccComponents/PostManage.js";
 
 import React from "react";
-import Footer from "./AppComponents/Footer.js";
+import Footer from "./HomeComponents/Footer.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Manager extends React.Component {

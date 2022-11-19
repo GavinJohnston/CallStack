@@ -1,6 +1,6 @@
 import "./Styles/Register.css";
-import Header from "./AppComponents/Header.js";
-import Footer from "./AppComponents/Footer.js";
+import Header from "./HomeComponents/Header.js";
+import Footer from "./HomeComponents/Footer.js";
 
 function Register() {
   return (

@@ -1,6 +1,7 @@
 using CallstackAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseCors(policyName);
+
 app.UseAuthorization();
 
 app.MapControllers();

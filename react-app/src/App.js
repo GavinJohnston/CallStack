@@ -1,69 +1,42 @@
-import "./App.css";
-
 import React from "react";
-
-import Header from "./AppComponents/Header.js";
-import SearchContainer from "./AppComponents/SearchContainer.js";
-import ListPanel from "./AppComponents/ListPanel.js";
-import ViewPanel from "./AppComponents/ViewPanel.js";
-import Footer from "./AppComponents/Footer.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Profile from "./Profile";
+import Manager from "./Manager";
+import Login from "./Login";
+import Register from "./Register";
+import NoMatch from "./NoMatch";
+import RouteGuard from "./RouteGuard";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      approved: [],
-      selected: [],
-    };
   }
 
   render() {
     return (
-      <div>
-        <Header />
-        <SearchContainer />
-
-        <div className="container container-main">
-          <ListPanel
-            approved={this.state.approved}
-            onViewItem={(obj) => {
-              this.viewItem(obj);
-            }}
-          />
-          <ViewPanel itemInfo={this.state.selected} />
-        </div>
-        <Footer />
-      </div>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route
+              element={<RouteGuard token="user-token" routeRedirect="/Login" />}
+            >
+              <Route path="/Profile" element={<Profile />} />
+            </Route>
+            <Route
+              element={<RouteGuard token="user-token" routeRedirect="/Login" />}
+            >
+              <Route path="/Manager" element={<Manager />} />
+            </Route>
+            <Route path="Login" element={<Login />} />
+            <Route path="Register" element={<Register />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
     );
   }
-
-  componentDidMount() {
-    this.populateState();
-  }
-
-  async populateState() {
-    const responseApproved = await fetch(
-      `https://localhost:7171/approvedList`,
-      {
-        mode: "cors",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    );
-    const Approved = await responseApproved.json();
-
-    this.setState({
-      approved: Approved,
-      selected: Approved[0],
-    });
-  }
-
-  viewItem = (obj) => {
-    this.setState({
-      selected: obj,
-    });
-  };
 }
 
 export default App;
