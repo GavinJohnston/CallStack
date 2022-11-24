@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace CallstackAPI.Migrations
 {
     /// <inheritdoc />
@@ -200,6 +202,17 @@ namespace CallstackAPI.Migrations
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                schema: "Identity",
+                table: "Role",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "28d07c1a-7a09-4607-8145-ecc133704687", null, "Visitor", "VISITOR" },
+                    { "d18ac71b-5a21-42bb-9517-e094f3957afd", null, "Administrator", "ADMINISTRATOR" },
+                    { "d195a6a9-451d-49d3-bb0c-c21c95d0d2bb", null, "Employer", "EMPLOYER" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -2,28 +2,34 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.CallstackAPI PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Controllers/Callstack.cs">
     <Files>
-      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="121" Column="5" />
-      <File FileName="CallstackAPI/Program.cs" Line="35" Column="36" />
+      <File FileName="CallstackAPI/Program.cs" Line="50" Column="44" />
+      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="85" Column="28" />
+      <File FileName="CallstackAPI/Properties/launchSettings.json" />
+      <File FileName="CallstackAPI/appsettings.json" />
+      <File FileName="CallstackAPI/Models/UserRegister.cs" />
+      <File FileName="CallstackAPI/Models/UserProfile.cs" />
+      <File FileName="CallstackAPI/Models/UserLogin.cs" />
+      <File FileName="CallstackAPI/Models/RoleConfiguration.cs" />
+      <File FileName="CallstackAPI/Models/CallstackContext.cs" />
+      <File FileName="CallstackAPI/Models/ApplicationUser.cs" />
+      <File FileName="CallstackAPI/Models/Advert.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CallstackAPI" expanded="True">
             <Node name="CallstackAPI" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="Callstack.cs" selected="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="Controllers" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.CallstackAPI PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
 </Properties>

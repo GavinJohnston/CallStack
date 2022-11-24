@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Emit;
 using CallstackAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -18,6 +19,8 @@ namespace CallstackAPI.Models
         {
             base.OnModelCreating(builder);
             builder.HasDefaultSchema("Identity");
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.Entity<IdentityUserRole<string>>().HasKey(p => new { p.UserId, p.RoleId });
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "User");

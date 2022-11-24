@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CallstackAPI.Migrations
 {
     [DbContext(typeof(CallstackContext))]
-    [Migration("20221116134415_InitialCreate")]
+    [Migration("20221124151511_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -180,6 +180,26 @@ namespace CallstackAPI.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Role", "Identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "28d07c1a-7a09-4607-8145-ecc133704687",
+                            Name = "Visitor",
+                            NormalizedName = "VISITOR"
+                        },
+                        new
+                        {
+                            Id = "d195a6a9-451d-49d3-bb0c-c21c95d0d2bb",
+                            Name = "Employer",
+                            NormalizedName = "EMPLOYER"
+                        },
+                        new
+                        {
+                            Id = "d18ac71b-5a21-42bb-9517-e094f3957afd",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

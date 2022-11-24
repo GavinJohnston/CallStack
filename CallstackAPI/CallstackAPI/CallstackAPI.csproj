@@ -29,6 +29,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +46,8 @@
     <None Remove="Microsoft.AspNetCore.Identity" />
     <None Remove="Services\" />
     <None Remove="Microsoft.AspNet.Identity.Core" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Microsoft.AspNetCore.Authorization" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

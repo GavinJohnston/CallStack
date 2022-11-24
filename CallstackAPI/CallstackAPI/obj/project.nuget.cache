@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fBt2kfpgbAYKMwoNpjU8mUU9XBeNnno63cflxmJLpgOiY7T/Dsc1aIyXKoqhaLC8aKNp456lNAfNsbUI/B3xJA==",
+  "dgSpecHash": "zqBktwO1B6UJ5j4p5liyjE4zdCnB1+zlrjEOJag15+EJdEXvBePE5vR4U3CsHpCS2QiiW3/gIOPcPGtURYCoHw==",
   "success": true,
   "projectFilePath": "/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/CallstackAPI.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,8 @@
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.cookies/2.2.0/microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.core/2.2.0/microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.0/microsoft.aspnetcore.authentication.jwtbearer.7.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.authorization/7.0.0/microsoft.aspnetcore.authorization.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.0/microsoft.aspnetcore.cryptography.internal.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/7.0.0/microsoft.aspnetcore.cryptography.keyderivation.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.dataprotection/2.2.0/microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
@@ -28,6 +30,7 @@
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.identity/2.2.0/microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.0/microsoft.aspnetcore.identity.entityframeworkcore.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.identity.ui/7.0.0/microsoft.aspnetcore.identity.ui.7.0.0.nupkg.sha512",
+    "/Users/gavin/.nuget/packages/microsoft.aspnetcore.metadata/7.0.0/microsoft.aspnetcore.metadata.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.openapi/7.0.0/microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.0/microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
     "/Users/gavin/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",

@@ -81,19 +81,17 @@ function Login() {
     })
       .then((r) => r.json())
       .then((obj) => {
-        // if (obj.body.succeeded == false) {
-        //   let list = document.getElementById("loginformPanel");
-        //   list.innerHTML = "";
-        //   let listItem = document.createElement("li");
-        //   listItem.innerHTML = `Login failed.`;
-        //   list.appendChild(listItem);
-        // } else {
-        //   window.location = "/Profile";
-        // }
-
-        console.log(obj);
-      })
-      .catch((error) => console.error("Unable to add item.", error));
+        if (obj == "Invalid Authentication") {
+          let list = document.getElementById("loginformPanel");
+          list.innerHTML = "";
+          let listItem = document.createElement("li");
+          listItem.innerHTML = `Login failed. Please try again.`;
+          list.appendChild(listItem);
+        } else {
+          localStorage.setItem("token", JSON.stringify(obj));
+          window.location = "/Profile";
+        }
+      });
   }
 }
 

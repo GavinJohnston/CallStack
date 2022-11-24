@@ -20,12 +20,12 @@ class App extends React.Component {
           <Routes>
             <Route index element={<Home />} />
             <Route
-              element={<RouteGuard token="user-token" routeRedirect="/Login" />}
+              element={<RouteGuard token="token" routeRedirect="/Login" />}
             >
               <Route path="/Profile" element={<Profile />} />
             </Route>
             <Route
-              element={<RouteGuard token="user-token" routeRedirect="/Login" />}
+              element={<RouteGuard token="token" routeRedirect="/Login" />}
             >
               <Route path="/Manager" element={<Manager />} />
             </Route>

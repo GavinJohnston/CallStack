@@ -283,3 +283,4 @@
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/obj/Debug/net7.0/CallstackAPI.RazorAssemblyInfo.cache
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/obj/Debug/net7.0/CallstackAPI.RazorAssemblyInfo.cs
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNet.Identity.Core.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

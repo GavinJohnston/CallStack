@@ -11,6 +11,11 @@ using Microsoft.Extensions.Logging;
 using System.Security.Principal;
 using System.Security.Claims;
 using Azure.Core;
+using System.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 namespace CallstackAPI.Controllers;
 
@@ -25,13 +30,15 @@ public class CallstackController : ControllerBase
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IUserEmailStore<ApplicationUser> _emailStore;
     private readonly IEmailSender _emailSender;
+    private readonly IConfiguration _jwtSettings;
 
 
     public CallstackController(CallstackContext context,
                 UserManager<ApplicationUser> userManager,
                 IUserStore<ApplicationUser> userStore,
                 SignInManager<ApplicationUser> signInManager,
-                IEmailSender emailSender)
+                IEmailSender emailSender,
+                IConfiguration configuration)
     {
         _context = context;
         _userManager = userManager;
@@ -39,6 +46,7 @@ public class CallstackController : ControllerBase
         _emailStore = GetEmailStore();
         _signInManager = signInManager;
         _emailSender = emailSender;
+        _jwtSettings = configuration.GetSection("Jwt");
     }
 
     [HttpPost]
@@ -52,16 +60,32 @@ public class CallstackController : ControllerBase
         await _emailStore.SetEmailAsync(user, userRegister.RegisterEmail, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, userRegister.RegisterPassword);
 
+        await _userManager.AddToRoleAsync(user, "Visitor");
+
         return Ok(result);
+
     }
 
     [HttpPost]
     [Route("Login")]
     public async Task<ActionResult> LoginUser(UserLogin userLogin)
     {
-        var result = await _signInManager.PasswordSignInAsync(userLogin.LoginEmail, userLogin.LoginPassword, userLogin.RememberMe, lockoutOnFailure: false);
+        var user = await _userManager.FindByEmailAsync(userLogin.LoginEmail);
 
-        return Ok(result);
+        if (user != null && await _userManager.CheckPasswordAsync(user, userLogin.LoginPassword))
+        {
+            var signingCredentials = GetSigningCredentials();
+
+            var claims = GetClaims(user);
+
+            var tokenOptions = GenerateTokenOptions(signingCredentials, await claims);
+
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+            return Ok(token);
+        }
+
+        return Unauthorized("Invalid Authentication");
     }
 
     private ApplicationUser CreateUser()
@@ -116,7 +140,7 @@ public class CallstackController : ControllerBase
 
         return Ok(awaitingApproval);
     }
-    
+
     [HttpGet]
     [Route("approvedList")]
     public async Task<ActionResult<IEnumerable<Advert>>> getApprovedList()
@@ -178,5 +202,39 @@ public class CallstackController : ControllerBase
 
         return Ok(User);
     }
-}
 
+    private SigningCredentials GetSigningCredentials()
+    {
+        var key = Encoding.UTF8.GetBytes(_jwtSettings.GetSection("Key").Value);
+
+        var secret = new SymmetricSecurityKey(key);
+
+        return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
+    }
+
+    private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
+    {
+        var tokenOptions = new JwtSecurityToken(
+
+            issuer: _jwtSettings.GetSection("Issuer").Value,
+            audience: _jwtSettings.GetSection("Audience").Value,
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(Convert.ToDouble(_jwtSettings.GetSection("expiryInMinutes").Value)),
+            signingCredentials: signingCredentials);
+        return tokenOptions;
+    }
+
+    private async Task<List<Claim>> GetClaims(ApplicationUser user)
+    {
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Email)
+        };
+        var roles = await _userManager.GetRolesAsync(user);
+        foreach (var role in roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
+        return claims;
+    }
+}
