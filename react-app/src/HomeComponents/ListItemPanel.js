@@ -15,6 +15,10 @@ function ListItemPanel(props) {
           </div>
           {props.itemInfo.location}, {props.itemInfo.country}
           <div className="iconContainer">
+            <FontAwesomeIcon icon="fa-solid fa-sterling-sign" />
+          </div>
+          {props.itemInfo.salary}
+          <div className="iconContainer">
             <FontAwesomeIcon icon="fa-solid fa-clock" />
           </div>
           {props.itemInfo.jobType}

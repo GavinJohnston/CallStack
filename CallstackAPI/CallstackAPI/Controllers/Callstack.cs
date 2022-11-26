@@ -226,14 +226,17 @@ public class CallstackController : ControllerBase
 
     private async Task<List<Claim>> GetClaims(ApplicationUser user)
     {
+        string roleName = "role";
+        string emailName = "Email";
+
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Email)
+            new Claim(emailName, user.Email)
         };
         var roles = await _userManager.GetRolesAsync(user);
         foreach (var role in roles)
         {
-            claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.Add(new Claim(roleName, role));
         }
         return claims;
     }

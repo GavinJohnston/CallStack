@@ -1,15 +1,13 @@
-import "./Styles/Manager.css";
-
+import "./Styles/Employer.css";
 import Header from "./HomeComponents/Header.js";
 import Post from "./AccComponents/Post.js";
 import Popup from "./AccComponents/Popup.js";
 import PostManage from "./AccComponents/PostManage.js";
-
 import React from "react";
 import Footer from "./HomeComponents/Footer.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class Manager extends React.Component {
+class Employer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -134,4 +132,4 @@ class Manager extends React.Component {
   }
 }
 
-export default Manager;
+export default Employer;

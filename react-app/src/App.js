@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Profile from "./Profile";
-import Manager from "./Manager";
+import Employer from "./Employer";
 import Login from "./Login";
 import Register from "./Register";
 import NoMatch from "./NoMatch";
-import RouteGuard from "./RouteGuard";
+import ProfileGuard from "./ProfileGuard";
+import EmployerGuard from "./EmployerGuard";
 
 class App extends React.Component {
   constructor(props) {
@@ -20,14 +21,14 @@ class App extends React.Component {
           <Routes>
             <Route index element={<Home />} />
             <Route
-              element={<RouteGuard token="token" routeRedirect="/Login" />}
+              element={<ProfileGuard token="token" routeRedirect="/Login" />}
             >
               <Route path="/Profile" element={<Profile />} />
             </Route>
             <Route
-              element={<RouteGuard token="token" routeRedirect="/Login" />}
+              element={<EmployerGuard token="token" routeRedirect="/Login" />}
             >
-              <Route path="/Manager" element={<Manager />} />
+              <Route path="/Employer" element={<Employer />} />
             </Route>
             <Route path="Login" element={<Login />} />
             <Route path="Register" element={<Register />} />
