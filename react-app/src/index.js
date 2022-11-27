@@ -10,6 +10,7 @@ import {
   faLayerGroup,
   faLocationDot,
   faLocationPin,
+  faRightFromBracket,
   faSterlingSign,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactDOM from "react-dom/client";
@@ -28,7 +29,8 @@ library.add(
   faLocationDot,
   faHouse,
   faBookmark,
-  faLayerGroup
+  faLayerGroup,
+  faRightFromBracket
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

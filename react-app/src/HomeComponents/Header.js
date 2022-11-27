@@ -1,7 +1,29 @@
 import "../Styles/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LogRegBtns from "./LogRegBtns";
+import Logged from "./Logged";
 
 function Header() {
+  let jwtRole;
+
+  if (localStorage.getItem("token")) {
+    let jwt = localStorage.getItem("token");
+
+    let jwtData = jwt.split(".")[1];
+    let decodedJwtJsonData = window.atob(jwtData);
+    let jwtJson = JSON.parse(decodedJwtJsonData);
+
+    jwtRole = jwtJson.role;
+  }
+
+  function renderOption() {
+    if (jwtRole == null) {
+      return <LogRegBtns />;
+    } else {
+      return <Logged role={jwtRole} />;
+    }
+  }
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="side-container">
@@ -14,19 +36,7 @@ function Header() {
         </a>
       </div>
       <div className="container"></div>
-      <div className="side-container">
-        <a href="Register" className="linkBtns">
-          <button type="button" className="btn btn-menu">
-            Register
-          </button>
-        </a>
-        <a href="Login" className="linkBtns">
-          <button type="button" className="btn btn-menu">
-            {" "}
-            Login
-          </button>
-        </a>
-      </div>
+      <div className="side-container">{renderOption()}</div>
     </nav>
   );
 }

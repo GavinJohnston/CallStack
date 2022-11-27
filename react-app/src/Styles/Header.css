@@ -36,18 +36,22 @@
 
 .linkBtns {
   margin: 0 10px;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 #logoLink {
   text-decoration: none;
 }
 
-.btn-menu {
-  background-color: white !important;
-  font-weight: bold !important;
-  color: #1f2c41 !important;
+.linkBtns:hover {
+  color: #62dafb !important;
 }
 
-.btn-menu:hover {
-  background-color: #62dafb !important;
+#linkBtnsExit {
+  font-size: 1.2em;
+  cursor: pointer;
 }
