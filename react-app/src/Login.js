@@ -81,14 +81,14 @@ function Login() {
     })
       .then((r) => r.json())
       .then((obj) => {
-        if (obj == "Invalid Authentication") {
+        if (obj === "Invalid Authentication") {
           let list = document.getElementById("loginformPanel");
           list.innerHTML = "";
           let listItem = document.createElement("li");
           listItem.innerHTML = `Login failed. Please try again.`;
           list.appendChild(listItem);
         } else {
-          localStorage.setItem("token", JSON.stringify(obj));
+          localStorage.setItem("token", obj);
           window.location = "/Profile";
         }
       });

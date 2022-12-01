@@ -3,6 +3,7 @@ import ProfileAcc from "./ProComponents/ProfileAcc.js";
 import "./Styles/Profile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { json } from "react-router-dom";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -69,23 +70,9 @@ class Profile extends React.Component {
       // return <Saved />;
     } else if (this.state.tabView === "Metrics") {
       // return <Metrics />;
+    } else if (this.state.tabView === "Applications") {
     }
   };
-
-  componentDidMount() {
-    this.populateState();
-  }
-
-  async populateState() {
-    fetch(`https://localhost:7171/Profile`, {
-      mode: "cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    }).then((res) => {
-      console.log(res);
-    });
-  }
 }
 
 export default Profile;

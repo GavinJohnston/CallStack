@@ -1,26 +1,26 @@
 ﻿<Properties StartupConfiguration="{9623D5AA-C685-4E72-8778-DC0F22A16BF7}|https">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.CallstackAPI PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Controllers/Callstack.cs">
     <Files>
       <File FileName="CallstackAPI/Program.cs" />
-      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="243" Column="2" />
-      <File FileName="CallstackAPI/Properties/launchSettings.json" />
-      <File FileName="CallstackAPI/appsettings.json" />
-      <File FileName="CallstackAPI/Models/UserRegister.cs" />
-      <File FileName="CallstackAPI/Models/UserProfile.cs" />
       <File FileName="CallstackAPI/Models/UserLogin.cs" />
-      <File FileName="CallstackAPI/Models/RoleConfiguration.cs" />
-      <File FileName="CallstackAPI/Models/CallstackContext.cs" />
+      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="218" Column="6" />
       <File FileName="CallstackAPI/Models/ApplicationUser.cs" />
-      <File FileName="CallstackAPI/Models/Advert.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CallstackAPI" expanded="True">
             <Node name="CallstackAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="Callstack.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True" />
             </Node>
           </Node>
@@ -28,9 +28,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

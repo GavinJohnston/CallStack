@@ -44,16 +44,18 @@ function Register() {
                 placeholder="Password"
               />
             </div>
-            {/* <div class="form-check">
+            <div className="form-group form-group-login">
+              <div class="form-check">
                 <input
                   type="checkbox"
                   class="form-check-input"
-                  id="exampleCheck1"
+                  id="EmployerAccCheck"
                 />
-                <label class="form-check-label" for="exampleCheck1">
-                  Check me out
+                <label class="form-check-label" for="EmployerAccCheck">
+                  I'm an Employer
                 </label>
-              </div> */}
+              </div>
+            </div>
             <button type="submit" className="btn btn-formSubmit">
               Register
             </button>

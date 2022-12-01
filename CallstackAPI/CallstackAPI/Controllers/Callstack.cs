@@ -15,7 +15,8 @@ using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using Microsoft.AspNetCore.Http;
+using CallstackAPI.Services;
 
 namespace CallstackAPI.Controllers;
 
@@ -195,12 +196,25 @@ public class CallstackController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("Profile")]
     public async Task<IActionResult> getProfile()
     {
-        var user = await _userManager.GetUserAsync(User);
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-        return Ok(User);
+        var user = _userManager.Users.Where(u => u.UserName == userId).FirstOrDefault();
+
+        UserProfileDTO userProfile = new UserProfileDTO();
+
+        userProfile.FirstName = user.FirstName;
+        userProfile.LastName = user.LastName;
+        userProfile.Website = user.Website;
+        userProfile.SkillLevel = user.SkillLevel;
+        userProfile.Education = user.Education;
+        userProfile.Email = user.Email;
+
+        return Ok(userProfile);
+
     }
 
     private SigningCredentials GetSigningCredentials()
@@ -227,11 +241,10 @@ public class CallstackController : ControllerBase
     private async Task<List<Claim>> GetClaims(ApplicationUser user)
     {
         string roleName = "role";
-        string emailName = "Email";
 
         var claims = new List<Claim>
         {
-            new Claim(emailName, user.Email)
+            new Claim(ClaimTypes.NameIdentifier, user.Email)
         };
         var roles = await _userManager.GetRolesAsync(user);
         foreach (var role in roles)
