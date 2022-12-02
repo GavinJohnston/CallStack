@@ -7,6 +7,7 @@ namespace CallstackAPI.Models
 	{
         public string RegisterEmail { get; set; }
         public string RegisterPassword { get; set; }
+        public bool EmployerAccCheck { get; set; }
     }
 }
 

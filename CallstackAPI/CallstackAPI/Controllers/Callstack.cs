@@ -61,7 +61,13 @@ public class CallstackController : ControllerBase
         await _emailStore.SetEmailAsync(user, userRegister.RegisterEmail, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, userRegister.RegisterPassword);
 
-        await _userManager.AddToRoleAsync(user, "Visitor");
+        if(userRegister.EmployerAccCheck == true)
+        {
+            await _userManager.AddToRoleAsync(user, "Employer");
+        } else
+        {
+            await _userManager.AddToRoleAsync(user, "Visitor");
+        }
 
         return Ok(result);
 

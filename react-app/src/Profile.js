@@ -1,5 +1,5 @@
 import Header from "./HomeComponents/Header.js";
-import ProfileAcc from "./ProComponents/ProfileAcc.js";
+import ProfileAcc from "./ProfileComponents/ProfileAcc.js";
 import "./Styles/Profile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";

@@ -1,8 +1,9 @@
 import "./Styles/Employer.css";
 import Header from "./HomeComponents/Header.js";
-import Post from "./AccComponents/Post.js";
-import Popup from "./AccComponents/Popup.js";
-import PostManage from "./AccComponents/PostManage.js";
+import Post from "./EmployerComponents/Post.js";
+import Popup from "./EmployerComponents/Popup.js";
+import EmployerAcc from "./EmployerComponents/EmployerAcc.js";
+import PostManage from "./EmployerComponents/PostManage.js";
 import React from "react";
 import Footer from "./HomeComponents/Footer.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -90,6 +91,8 @@ class Employer extends React.Component {
       return <Post />;
     } else if (this.state.tabView === "PostManage") {
       return <PostManage Lists={this.state} />;
+    } else if (this.state.tabView === "Account") {
+      return <EmployerAcc />;
     }
   };
 

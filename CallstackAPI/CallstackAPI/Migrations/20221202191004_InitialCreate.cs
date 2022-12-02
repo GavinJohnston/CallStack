@@ -64,6 +64,7 @@ namespace CallstackAPI.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyGroup = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SkillLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -210,9 +211,9 @@ namespace CallstackAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "28d07c1a-7a09-4607-8145-ecc133704687", null, "Visitor", "VISITOR" },
-                    { "d18ac71b-5a21-42bb-9517-e094f3957afd", null, "Administrator", "ADMINISTRATOR" },
-                    { "d195a6a9-451d-49d3-bb0c-c21c95d0d2bb", null, "Employer", "EMPLOYER" }
+                    { "31c8b319-2df1-414e-8b14-aff15e5f45eb", null, "Employer", "EMPLOYER" },
+                    { "96016d60-928a-4d45-855d-3e5b095f0eef", null, "Visitor", "VISITOR" },
+                    { "9dcf2fdc-9d31-41d6-921e-02d3437e420a", null, "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(

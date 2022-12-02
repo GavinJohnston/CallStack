@@ -80,6 +80,9 @@ namespace CallstackAPI.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("CompanyGroup")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -181,19 +184,19 @@ namespace CallstackAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28d07c1a-7a09-4607-8145-ecc133704687",
+                            Id = "96016d60-928a-4d45-855d-3e5b095f0eef",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "d195a6a9-451d-49d3-bb0c-c21c95d0d2bb",
+                            Id = "31c8b319-2df1-414e-8b14-aff15e5f45eb",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "d18ac71b-5a21-42bb-9517-e094f3957afd",
+                            Id = "9dcf2fdc-9d31-41d6-921e-02d3437e420a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

@@ -87,8 +87,21 @@ function Login() {
           let listItem = document.createElement("li");
           listItem.innerHTML = `Login failed. Please try again.`;
           list.appendChild(listItem);
-        } else {
-          localStorage.setItem("token", obj);
+        }
+
+        localStorage.setItem("token", obj);
+
+        let jwtRole;
+
+        let jwtData = obj.split(".")[1];
+        let decodedJwtJsonData = window.atob(jwtData);
+        let jwtJson = JSON.parse(decodedJwtJsonData);
+
+        jwtRole = jwtJson.role;
+
+        if (jwtRole == "Employer") {
+          window.location = "/Employer";
+        } else if (jwtRole == "Visitor") {
           window.location = "/Profile";
         }
       });

@@ -20,9 +20,6 @@ function Register() {
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
               />
-              {/* <small id="emailHelp" class="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small> */}
             </div>
             <div className="form-group form-group-login">
               <label htmlFor="RegisterPassword">Password</label>
@@ -45,13 +42,14 @@ function Register() {
               />
             </div>
             <div className="form-group form-group-login">
-              <div class="form-check">
+              <div className="form-check">
                 <input
                   type="checkbox"
-                  class="form-check-input"
+                  className="form-check-input"
                   id="EmployerAccCheck"
+                  name="EmployerAccCheck"
                 />
-                <label class="form-check-label" for="EmployerAccCheck">
+                <label className="form-check-label" htmlFor="EmployerAccCheck">
                   I'm an Employer
                 </label>
               </div>
@@ -75,6 +73,12 @@ function Register() {
     var formData = new FormData(form);
 
     var dataObject = Object.fromEntries(formData);
+
+    if (document.getElementById("EmployerAccCheck").checked === true) {
+      dataObject.EmployerAccCheck = true;
+    } else {
+      dataObject.EmployerAccCheck = false;
+    }
 
     if (dataObject.RegisterPassword === dataObject.ConfirmRegisterPassword) {
       delete dataObject.ConfirmRegisterPassword;
