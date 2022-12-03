@@ -14,6 +14,7 @@ namespace CallstackAPI.Models
         }
 
         public DbSet<Advert> Advert { get; set; } = null!;
+        public DbSet<Bookmarks> Bookmarks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

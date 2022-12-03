@@ -10,15 +10,7 @@ function ViewPanel(props) {
     }
   }
 
-  function bookmarkJob() {
-    if (
-      document.getElementById("bookmarkIcon").style.color == "rgb(98, 218, 251)"
-    ) {
-      document.getElementById("bookmarkIcon").style.color = "rgba(0, 0, 0, 0)";
-    } else {
-      document.getElementById("bookmarkIcon").style.color = "rgb(98, 218, 251)";
-    }
-  }
+  function bookmarkJob(postId) {}
 
   return (
     <div id="viewPanel">
@@ -33,7 +25,7 @@ function ViewPanel(props) {
             id="bookmarkIcon"
             alt="Bookmark Job"
             onClick={() => {
-              bookmarkJob();
+              bookmarkJob(`${props.itemInfo.id}`);
             }}
           />
         </div>

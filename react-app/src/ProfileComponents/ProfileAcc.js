@@ -1,5 +1,6 @@
 import "../Styles/ProfileAcc.css";
 import React from "react";
+import { data, event } from "jquery";
 
 class ProfileAcc extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ProfileAcc extends React.Component {
     return (
       <div>
         <h2 id="formHeader">Your Profile</h2>
-        <form id="profileDataForm">
+        <form id="profileDataForm" onSubmit={this.updateProfile}>
           <h3 className="subHeader">Personal Details</h3>
           <div className="row">
             <div className="col-3">
@@ -19,6 +20,7 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="First name"
                 id="firstName"
+                name="firstName"
               />
             </div>
             <div className="col-3">
@@ -27,6 +29,7 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="Last name"
                 id="lastName"
+                name="lastName"
               />
             </div>
           </div>
@@ -37,6 +40,7 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="E-Mail Address"
                 id="email"
+                name="email"
               />
             </div>
           </div>
@@ -47,6 +51,7 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="Website / GitHub"
                 id="website"
+                name="website"
               />
             </div>
           </div>
@@ -68,7 +73,7 @@ class ProfileAcc extends React.Component {
               </select>
             </div>
           </div>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
         <form id="profileDataForm">
           <h3 className="subHeader">Update Password</h3>
@@ -104,11 +109,12 @@ class ProfileAcc extends React.Component {
   }
 
   componentDidMount() {
-    this.populateState();
+    this.populateProfile();
   }
 
-  async populateState() {
+  async populateProfile() {
     fetch(`https://localhost:7171/Profile`, {
+      method: "GET",
       mode: "cors",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -119,13 +125,34 @@ class ProfileAcc extends React.Component {
     })
       .then((r) => r.json())
       .then((obj) => {
-        console.log(obj);
         Object.keys(obj).forEach((key) => {
           if (obj[key] !== null) {
             document.getElementById(`${key}`).value = obj[key];
           }
         });
       });
+  }
+
+  updateProfile(e) {
+    e.preventDefault();
+
+    const form = document.getElementById("profileDataForm");
+
+    var formData = new FormData(form);
+
+    var dataObject = Object.fromEntries(formData);
+
+    fetch(`https://localhost:7171/updateProfile`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify(dataObject),
+    });
   }
 }
 

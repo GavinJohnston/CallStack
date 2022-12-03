@@ -1,21 +1,24 @@
 ﻿<Properties StartupConfiguration="{9623D5AA-C685-4E72-8778-DC0F22A16BF7}|https">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Models/UserRegister.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Models/Advert.cs">
     <Files>
       <File FileName="CallstackAPI/Program.cs" />
       <File FileName="CallstackAPI/Models/UserLogin.cs" />
-      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="64" Column="45" />
-      <File FileName="CallstackAPI/Models/ApplicationUser.cs" Line="17" Column="1" />
-      <File FileName="CallstackAPI/Services/UserProfileDTO.cs" Line="1" Column="1" />
-      <File FileName="CallstackAPI/Models/RoleConfiguration.cs" Line="1" Column="1" />
+      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="71" Column="1" />
+      <File FileName="CallstackAPI/Models/ApplicationUser.cs" Line="14" Column="6" />
+      <File FileName="CallstackAPI/Services/UserProfileDTO.cs" />
+      <File FileName="CallstackAPI/Models/RoleConfiguration.cs" />
       <File FileName="CallstackAPI/Models/UserRegister.cs" Line="10" Column="37" />
+      <File FileName="CallstackAPI/Models/Advert.cs" Line="20" Column="54" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CallstackAPI" expanded="True">
             <Node name="CallstackAPI" expanded="True">
-              <Node name="Pages" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Advert.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

@@ -17,28 +17,18 @@ namespace CallstackAPI.Migrations
                 name: "Identity");
 
             migrationBuilder.CreateTable(
-                name: "Advert",
+                name: "Bookmarks",
                 schema: "Identity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Salary = table.Column<int>(type: "int", nullable: false),
-                    JobType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    onSite = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Benefits = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DescShort = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DescriptionArea = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    isApproved = table.Column<bool>(type: "bit", nullable: false)
+                    AdvertID = table.Column<int>(type: "int", nullable: false),
+                    userID = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Advert", x => x.Id);
+                    table.PrimaryKey("PK_Bookmarks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,6 +99,38 @@ namespace CallstackAPI.Migrations
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Advert",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Salary = table.Column<int>(type: "int", nullable: false),
+                    JobType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    onSite = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Benefits = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DescShort = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DescriptionArea = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Advert", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Advert_User_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalSchema: "Identity",
+                        principalTable: "User",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -211,10 +233,16 @@ namespace CallstackAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "31c8b319-2df1-414e-8b14-aff15e5f45eb", null, "Employer", "EMPLOYER" },
-                    { "96016d60-928a-4d45-855d-3e5b095f0eef", null, "Visitor", "VISITOR" },
-                    { "9dcf2fdc-9d31-41d6-921e-02d3437e420a", null, "Administrator", "ADMINISTRATOR" }
+                    { "28db44ac-59e8-47c3-8e82-8dca233b4c85", null, "Visitor", "VISITOR" },
+                    { "3fa369b5-1700-4ae1-8ce4-f4e874e3afaa", null, "Administrator", "ADMINISTRATOR" },
+                    { "9cd349b1-6aa6-446f-9733-94a924b18066", null, "Employer", "EMPLOYER" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Advert_ApplicationUserId",
+                schema: "Identity",
+                table: "Advert",
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -268,6 +296,10 @@ namespace CallstackAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Advert",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
+                name: "Bookmarks",
                 schema: "Identity");
 
             migrationBuilder.DropTable(

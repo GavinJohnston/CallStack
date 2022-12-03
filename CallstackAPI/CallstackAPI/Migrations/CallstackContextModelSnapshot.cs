@@ -31,6 +31,9 @@ namespace CallstackAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Benefits")
                         .HasColumnType("nvarchar(max)");
 
@@ -68,6 +71,8 @@ namespace CallstackAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Advert", "Identity");
                 });
@@ -155,6 +160,25 @@ namespace CallstackAPI.Migrations
                     b.ToTable("User", "Identity");
                 });
 
+            modelBuilder.Entity("CallstackAPI.Models.Bookmarks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AdvertID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bookmarks", "Identity");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -184,19 +208,19 @@ namespace CallstackAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "96016d60-928a-4d45-855d-3e5b095f0eef",
+                            Id = "28db44ac-59e8-47c3-8e82-8dca233b4c85",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "31c8b319-2df1-414e-8b14-aff15e5f45eb",
+                            Id = "9cd349b1-6aa6-446f-9733-94a924b18066",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "9dcf2fdc-9d31-41d6-921e-02d3437e420a",
+                            Id = "3fa369b5-1700-4ae1-8ce4-f4e874e3afaa",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -312,6 +336,13 @@ namespace CallstackAPI.Migrations
                     b.ToTable("UserTokens", "Identity");
                 });
 
+            modelBuilder.Entity("CallstackAPI.Models.Advert", b =>
+                {
+                    b.HasOne("CallstackAPI.Models.ApplicationUser", null)
+                        .WithMany("Advert")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -361,6 +392,11 @@ namespace CallstackAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CallstackAPI.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Advert");
                 });
 #pragma warning restore 612, 618
         }

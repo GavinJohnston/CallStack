@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using CallstackAPI.Services;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CallstackAPI.Controllers;
 
@@ -118,10 +119,37 @@ public class CallstackController : ControllerBase
         return (Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser>)_userStore;
     }
 
+    [HttpPut]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("updateProfile")]
+    public async Task<IActionResult> updateProfile()
+    {
+       
+
+        return Ok();
+    }
+
     [HttpPost]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("updateAccount")]
+    public async Task<ActionResult<ApplicationUser>> updateAccount(ApplicationUser applicationUser)
+    {
+
+
+        return Ok();
+    }
+
+    [HttpPost]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("PostAdvert")]
     public async Task<ActionResult<Advert>> postInfo(Advert advert)
     {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        advert.ApplicationUserId = user.Id;
+
         _context.Advert.Add(advert);
 
         await _context.SaveChangesAsync();
@@ -206,9 +234,9 @@ public class CallstackController : ControllerBase
     [Route("Profile")]
     public async Task<IActionResult> getProfile()
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-        var user = _userManager.Users.Where(u => u.UserName == userId).FirstOrDefault();
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
 
         UserProfileDTO userProfile = new UserProfileDTO();
 

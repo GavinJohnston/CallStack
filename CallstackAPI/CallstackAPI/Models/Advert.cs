@@ -1,4 +1,6 @@
 ﻿using System;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 namespace CallstackAPI.Models
 {
     public class Advert
@@ -16,6 +18,7 @@ namespace CallstackAPI.Models
         public string? DescShort { get; set; }
         public string? DescriptionArea { get; set; }
         public bool isApproved { get; set; } = false;
+        public string? ApplicationUserId { get; set; }
     }
 }
 
