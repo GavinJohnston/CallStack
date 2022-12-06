@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using CallstackAPI.Models;
-//using CallstackAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -18,6 +17,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using CallstackAPI.Services;
 using Microsoft.AspNetCore.JsonPatch;
+using System.IO.Compression;
 
 namespace CallstackAPI.Controllers;
 
@@ -96,37 +96,26 @@ public class CallstackController : ControllerBase
         return Unauthorized("Invalid Authentication");
     }
 
-    private ApplicationUser CreateUser()
-    {
-        try
-        {
-            return Activator.CreateInstance<ApplicationUser>();
-        }
-        catch
-        {
-            throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-        }
-    }
 
-    private Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser> GetEmailStore()
-    {
-        if (!_userManager.SupportsUserEmail)
-        {
-            throw new NotSupportedException("The default UI requires a user store with email support.");
-        }
-        return (Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser>)_userStore;
-    }
 
-    [HttpPut]
+    [HttpPost]
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("updateProfile")]
-    public async Task<IActionResult> updateProfile()
+    public async Task<IActionResult> updateProfile(ApplicationUser applicationUser)
     {
-       
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-        return Ok();
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        user.FirstName = applicationUser.FirstName;
+        user.LastName = applicationUser.LastName;
+        user.Website = applicationUser.Website;
+        user.SkillLevel = applicationUser.SkillLevel;
+        user.Education = applicationUser.Education;
+        
+        IdentityResult result = await _userManager.UpdateAsync(user);
+
+        return Ok(result);
     }
 
     [HttpPost]
@@ -134,9 +123,44 @@ public class CallstackController : ControllerBase
     [Route("updateAccount")]
     public async Task<ActionResult<ApplicationUser>> updateAccount(ApplicationUser applicationUser)
     {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
 
-        return Ok();
+        user.CompanyGroup = applicationUser.CompanyGroup;
+        user.Website = applicationUser.Website;
+
+        IdentityResult result = await _userManager.UpdateAsync(user);
+
+        return Ok(result);
+    }
+
+    [HttpPost]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("PostCV")]
+    public async Task<ActionResult<Advert>> postCV(IFormFile file)
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        CV cv = new CV();
+
+        using (var ms = new MemoryStream())
+        {
+            file.CopyTo(ms);
+            var fileBytes = ms.ToArray();
+            //s = Convert.ToBase64String(fileBytes);
+            cv.userCV = fileBytes;
+        }
+
+        cv.ApplicationUserId = user.Id;
+
+        _context.CV.Add(cv);
+
+        await _context.SaveChangesAsync();
+
+        return Ok(cv);
     }
 
     [HttpPost]
@@ -177,6 +201,36 @@ public class CallstackController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("getCV")]
+    public async Task<ActionResult<Advert>> getCVDate()
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = await _userManager.Users.Where(u => u.UserName == userName).FirstOrDefaultAsync();
+
+        var cv = await _context.CV.Where(u => u.ApplicationUserId == user.Id).FirstOrDefaultAsync();
+
+        return Ok(cv.Date);
+    }
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("downloadCV")]
+    public async Task<ActionResult<Advert>> downloadCV()
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = await _userManager.Users.Where(u => u.UserName == userName).FirstOrDefaultAsync();
+
+        var cv = await _context.CV.Where(u => u.ApplicationUserId == user.Id).FirstOrDefaultAsync();
+
+        MemoryStream ms = new MemoryStream(cv.userCV);
+
+        return Ok(ms);
+    }
+
+    [HttpGet]
     [Route("approvedList")]
     public async Task<ActionResult<IEnumerable<Advert>>> getApprovedList()
     {
@@ -193,6 +247,46 @@ public class CallstackController : ControllerBase
         }
 
         return Ok(approved);
+    }
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("Profile")]
+    public async Task<IActionResult> getProfile()
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        UserProfileDTO userProfile = new UserProfileDTO();
+
+        userProfile.FirstName = user.FirstName;
+        userProfile.LastName = user.LastName;
+        userProfile.Website = user.Website;
+        userProfile.SkillLevel = user.SkillLevel;
+        userProfile.Education = user.Education;
+        userProfile.Email = user.Email;
+
+        return Ok(userProfile);
+
+    }
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("Account")]
+    public async Task<IActionResult> getAccount()
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        UserAccountDTO userAccount = new UserAccountDTO();
+
+        userAccount.CompanyGroup = user.CompanyGroup;
+        userAccount.Email = user.Email;
+        userAccount.Website = user.Website;
+
+        return Ok(userAccount);
     }
 
     [HttpDelete]
@@ -229,27 +323,7 @@ public class CallstackController : ControllerBase
         return Ok(advert);
     }
 
-    [HttpGet]
-    [Authorize(AuthenticationSchemes = "Bearer")]
-    [Route("Profile")]
-    public async Task<IActionResult> getProfile()
-    {
-        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
-
-        UserProfileDTO userProfile = new UserProfileDTO();
-
-        userProfile.FirstName = user.FirstName;
-        userProfile.LastName = user.LastName;
-        userProfile.Website = user.Website;
-        userProfile.SkillLevel = user.SkillLevel;
-        userProfile.Education = user.Education;
-        userProfile.Email = user.Email;
-
-        return Ok(userProfile);
-
-    }
+    // services
 
     private SigningCredentials GetSigningCredentials()
     {
@@ -286,5 +360,28 @@ public class CallstackController : ControllerBase
             claims.Add(new Claim(roleName, role));
         }
         return claims;
+    }
+
+    private ApplicationUser CreateUser()
+    {
+        try
+        {
+            return Activator.CreateInstance<ApplicationUser>();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+        }
+    }
+
+    private Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser> GetEmailStore()
+    {
+        if (!_userManager.SupportsUserEmail)
+        {
+            throw new NotSupportedException("The default UI requires a user store with email support.");
+        }
+        return (Microsoft.AspNetCore.Identity.IUserEmailStore<ApplicationUser>)_userStore;
     }
 }

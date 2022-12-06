@@ -10,7 +10,7 @@ class EmployerAcc extends React.Component {
     return (
       <div>
         <h2 id="formHeader">Account Management</h2>
-        <form id="profileDataForm">
+        <form id="profileDataForm" onSubmit={this.updateProfile}>
           <h3 className="subHeader">Contact Details</h3>
           <div className="row">
             <div className="col-6">
@@ -19,6 +19,7 @@ class EmployerAcc extends React.Component {
                 className="form-control"
                 placeholder="Company / Group"
                 id="companyGroup"
+                name="CompanyGroup"
               />
             </div>
           </div>
@@ -29,6 +30,7 @@ class EmployerAcc extends React.Component {
                 className="form-control"
                 placeholder="E-Mail Address"
                 id="email"
+                readOnly
               />
             </div>
           </div>
@@ -37,12 +39,13 @@ class EmployerAcc extends React.Component {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Website / GitHub"
+                placeholder="Website"
                 id="website"
+                name="Website"
               />
             </div>
           </div>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
         <form id="profileDataForm">
           <h3 className="subHeader">Update Password</h3>
@@ -75,6 +78,53 @@ class EmployerAcc extends React.Component {
         </form>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.populateProfile();
+  }
+
+  async populateProfile() {
+    fetch(`https://localhost:7171/Account`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        Object.keys(obj).forEach((key) => {
+          if (obj[key] !== null) {
+            document.getElementById(`${key}`).value = obj[key];
+          }
+        });
+      });
+  }
+
+  updateProfile(e) {
+    e.preventDefault();
+
+    const form = document.getElementById("profileDataForm");
+
+    var formData = new FormData(form);
+
+    var dataObject = Object.fromEntries(formData);
+
+    fetch(`https://localhost:7171/updateAccount`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify(dataObject),
+    });
   }
 }
 

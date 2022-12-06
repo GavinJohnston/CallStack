@@ -1,24 +1,23 @@
 ﻿<Properties StartupConfiguration="{9623D5AA-C685-4E72-8778-DC0F22A16BF7}|https">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Models/Advert.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Controllers/Callstack.cs">
     <Files>
-      <File FileName="CallstackAPI/Program.cs" />
-      <File FileName="CallstackAPI/Models/UserLogin.cs" />
-      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="71" Column="1" />
-      <File FileName="CallstackAPI/Models/ApplicationUser.cs" Line="14" Column="6" />
-      <File FileName="CallstackAPI/Services/UserProfileDTO.cs" />
-      <File FileName="CallstackAPI/Models/RoleConfiguration.cs" />
-      <File FileName="CallstackAPI/Models/UserRegister.cs" Line="10" Column="37" />
-      <File FileName="CallstackAPI/Models/Advert.cs" Line="20" Column="54" />
+      <File FileName="CallstackAPI/Controllers/Callstack.cs" Line="138" Column="1" />
+      <File FileName="CallstackAPI/Models/CV.cs" Line="11" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CallstackAPI" expanded="True">
             <Node name="CallstackAPI" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="Advert.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="Callstack.cs" selected="True" />
               </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -26,9 +25,6 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.CallstackAPI PreferredExecutionTarget="/Applications/Firefox.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

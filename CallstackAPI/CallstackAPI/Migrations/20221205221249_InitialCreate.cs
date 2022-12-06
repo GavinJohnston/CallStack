@@ -134,6 +134,28 @@ namespace CallstackAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CV",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    userCV = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CV", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CV_User_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalSchema: "Identity",
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserClaims",
                 schema: "Identity",
                 columns: table => new
@@ -233,15 +255,21 @@ namespace CallstackAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "28db44ac-59e8-47c3-8e82-8dca233b4c85", null, "Visitor", "VISITOR" },
-                    { "3fa369b5-1700-4ae1-8ce4-f4e874e3afaa", null, "Administrator", "ADMINISTRATOR" },
-                    { "9cd349b1-6aa6-446f-9733-94a924b18066", null, "Employer", "EMPLOYER" }
+                    { "4b27ed3f-c63f-421a-8204-2ba66ae0651d", null, "Administrator", "ADMINISTRATOR" },
+                    { "517a7a18-1e4c-4762-99bc-714eab5eda78", null, "Visitor", "VISITOR" },
+                    { "e833ae02-d237-4c2e-99e2-432d92165284", null, "Employer", "EMPLOYER" }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Advert_ApplicationUserId",
                 schema: "Identity",
                 table: "Advert",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CV_ApplicationUserId",
+                schema: "Identity",
+                table: "CV",
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
@@ -300,6 +328,10 @@ namespace CallstackAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Bookmarks",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
+                name: "CV",
                 schema: "Identity");
 
             migrationBuilder.DropTable(

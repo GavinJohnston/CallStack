@@ -31,7 +31,7 @@ class Logged extends React.Component {
       document.getElementById("loggedBtn").href = "/Profile";
     } else if (this.props.role == "Employer") {
       document.getElementById("loggedBtn").innerHTML = "Account";
-      document.getElementById("loggedBtn").href = "/Account";
+      document.getElementById("loggedBtn").href = "/Employer";
     } else {
       return;
     }

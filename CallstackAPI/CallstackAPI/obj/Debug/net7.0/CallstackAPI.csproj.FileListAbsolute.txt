@@ -284,3 +284,16 @@
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/obj/Debug/net7.0/CallstackAPI.RazorAssemblyInfo.cs
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNet.Identity.Core.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.barcodes.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.forms.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.io.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.kernel.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.layout.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.pdfa.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.sign.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.styledxmlparser.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.svg.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.commons.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.DotNet.PlatformAbstractions.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/BouncyCastle.Crypto.dll

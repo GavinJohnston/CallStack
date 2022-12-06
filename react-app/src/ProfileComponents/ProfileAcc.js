@@ -1,6 +1,9 @@
 import "../Styles/ProfileAcc.css";
 import React from "react";
 import { data, event } from "jquery";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getQueriesForElement } from "@testing-library/react";
+import { json } from "react-router-dom";
 
 class ProfileAcc extends React.Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="First name"
                 id="firstName"
-                name="firstName"
+                name="FirstName"
               />
             </div>
             <div className="col-3">
@@ -29,7 +32,7 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="Last name"
                 id="lastName"
-                name="lastName"
+                name="LastName"
               />
             </div>
           </div>
@@ -41,6 +44,7 @@ class ProfileAcc extends React.Component {
                 placeholder="E-Mail Address"
                 id="email"
                 name="email"
+                readOnly
               />
             </div>
           </div>
@@ -51,13 +55,13 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="Website / GitHub"
                 id="website"
-                name="website"
+                name="Website"
               />
             </div>
           </div>
           <div className="row">
             <div className="col-3">
-              <select name="Experience" id="skillLevel">
+              <select name="SkillLevel" id="skillLevel">
                 <option value="Junior / Entry Level">
                   Junior / Entry Level
                 </option>
@@ -73,8 +77,48 @@ class ProfileAcc extends React.Component {
               </select>
             </div>
           </div>
+
           <button type="submit">Submit</button>
         </form>
+        <div className="row">
+          <h3 className="subHeader">Manage CV</h3>
+          <div className="col-6">
+            <input
+              type="file"
+              id="fileUpload"
+              name="uploadFile"
+              accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              onChange={() => {
+                this.fileSelected();
+              }}
+            />
+            <input
+              type="button"
+              id="loadFileView"
+              value="Browse.."
+              onClick={() => {
+                this.getFile();
+              }}
+            />
+            <div id="uploadComplete">
+              <FontAwesomeIcon icon="fa-solid fa-thumbs-up" id="thumbsUpIcon" />
+            </div>
+            <div id="resumeDetails">
+              <div
+                id="resumeTitle"
+                onClick={() => {
+                  this.downloadCV();
+                }}
+              >
+                Download CV
+              </div>
+              <div id="resumeDate"></div>
+              <div id="resumeDel">
+                <FontAwesomeIcon icon="fa-solid fa-x" />
+              </div>
+            </div>
+          </div>
+        </div>
         <form id="profileDataForm">
           <h3 className="subHeader">Update Password</h3>
           <div className="row">
@@ -110,6 +154,7 @@ class ProfileAcc extends React.Component {
 
   componentDidMount() {
     this.populateProfile();
+    this.getCVInfo();
   }
 
   async populateProfile() {
@@ -153,6 +198,73 @@ class ProfileAcc extends React.Component {
       },
       body: JSON.stringify(dataObject),
     });
+  }
+
+  getFile() {
+    document.getElementById("fileUpload").click();
+  }
+
+  fileSelected() {
+    const input = document.getElementById("fileUpload").files[0];
+
+    var data = new FormData();
+    data.append("file", input);
+
+    fetch(`https://localhost:7171/PostCV`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        // "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: data,
+    }).then(() => {
+      this.getCVInfo();
+    });
+  }
+
+  getCVInfo() {
+    fetch(`https://localhost:7171/getCV`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        document.getElementById(
+          "resumeDate"
+        ).innerHTML = `Last Updated: ${obj}`;
+      });
+  }
+
+  downloadCV() {
+    fetch(`https://localhost:7171/downloadCV`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((r) => r.blob())
+      .then((blob) => {
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "filename.docx";
+        document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+        a.click();
+        a.remove(); //afterwards we remove the element again
+      });
   }
 }
 

@@ -17,6 +17,7 @@ namespace CallstackAPI.Models
         public string? SkillLevel { get; set; }
         public string? Education { get; set; }
         public List<Advert> Advert { get; set; }
+        public List<CV> CV { get; set; }
     }
 }
 

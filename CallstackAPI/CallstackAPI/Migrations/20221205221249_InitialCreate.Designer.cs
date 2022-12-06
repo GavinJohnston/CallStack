@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CallstackAPI.Migrations
 {
     [DbContext(typeof(CallstackContext))]
-    [Migration("20221203183356_InitialCreate")]
+    [Migration("20221205221249_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -182,6 +182,31 @@ namespace CallstackAPI.Migrations
                     b.ToTable("Bookmarks", "Identity");
                 });
 
+            modelBuilder.Entity("CallstackAPI.Models.CV", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("userCV")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("CV", "Identity");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -211,19 +236,19 @@ namespace CallstackAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28db44ac-59e8-47c3-8e82-8dca233b4c85",
+                            Id = "517a7a18-1e4c-4762-99bc-714eab5eda78",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "9cd349b1-6aa6-446f-9733-94a924b18066",
+                            Id = "e833ae02-d237-4c2e-99e2-432d92165284",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "3fa369b5-1700-4ae1-8ce4-f4e874e3afaa",
+                            Id = "4b27ed3f-c63f-421a-8204-2ba66ae0651d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -346,6 +371,13 @@ namespace CallstackAPI.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
+            modelBuilder.Entity("CallstackAPI.Models.CV", b =>
+                {
+                    b.HasOne("CallstackAPI.Models.ApplicationUser", null)
+                        .WithMany("CV")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -400,6 +432,8 @@ namespace CallstackAPI.Migrations
             modelBuilder.Entity("CallstackAPI.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Advert");
+
+                    b.Navigation("CV");
                 });
 #pragma warning restore 612, 618
         }
