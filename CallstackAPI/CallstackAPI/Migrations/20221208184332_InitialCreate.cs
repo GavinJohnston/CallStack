@@ -32,6 +32,29 @@ namespace CallstackAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CVView",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CVId = table.Column<int>(type: "int", nullable: false),
+                    AdvertId = table.Column<int>(type: "int", nullable: false),
+                    AdvertTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdvertAuthorId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SkillLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CVView", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Role",
                 schema: "Identity",
                 columns: table => new
@@ -141,6 +164,7 @@ namespace CallstackAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     userCV = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    FileNameType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -255,9 +279,9 @@ namespace CallstackAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4b27ed3f-c63f-421a-8204-2ba66ae0651d", null, "Administrator", "ADMINISTRATOR" },
-                    { "517a7a18-1e4c-4762-99bc-714eab5eda78", null, "Visitor", "VISITOR" },
-                    { "e833ae02-d237-4c2e-99e2-432d92165284", null, "Employer", "EMPLOYER" }
+                    { "ae0dd6bb-f47e-4b91-bb00-e4f759e1e823", null, "Visitor", "VISITOR" },
+                    { "b1ada19a-7961-47cd-a6e9-e049fe139d8d", null, "Administrator", "ADMINISTRATOR" },
+                    { "dbdcbd12-f1f0-49a5-86dd-52f99534e649", null, "Employer", "EMPLOYER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -332,6 +356,10 @@ namespace CallstackAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "CV",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
+                name: "CVView",
                 schema: "Identity");
 
             migrationBuilder.DropTable(

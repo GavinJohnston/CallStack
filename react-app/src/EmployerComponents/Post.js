@@ -164,7 +164,7 @@ function Post() {
     })
       .then((response) => response.json())
       .then(() => {
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => console.error("Unable to add item.", error));
 

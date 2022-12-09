@@ -7,6 +7,7 @@ import PostManage from "./EmployerComponents/PostManage.js";
 import React from "react";
 import Footer from "./HomeComponents/Footer.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Applicants from "./EmployerComponents/Applicants";
 
 class Employer extends React.Component {
   constructor(props) {
@@ -61,7 +62,13 @@ class Employer extends React.Component {
                   >
                     Manage Ads
                   </li>
-                  <li>Applicants</li>
+                  <li
+                    onClick={() => {
+                      this.setTab("Applicants");
+                    }}
+                  >
+                    Applicants
+                  </li>
                   <li
                     onClick={() => {
                       this.setTab("Metrics");
@@ -93,6 +100,8 @@ class Employer extends React.Component {
       return <PostManage Lists={this.state} />;
     } else if (this.state.tabView === "Account") {
       return <EmployerAcc />;
+    } else if (this.state.tabView === "Applicants") {
+      return <Applicants Lists={this.state.approved} />;
     }
   };
 

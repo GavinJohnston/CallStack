@@ -43,7 +43,6 @@ class ProfileAcc extends React.Component {
                 className="form-control"
                 placeholder="E-Mail Address"
                 id="email"
-                name="email"
                 readOnly
               />
             </div>
@@ -109,9 +108,7 @@ class ProfileAcc extends React.Component {
                 onClick={() => {
                   this.downloadCV();
                 }}
-              >
-                Download CV
-              </div>
+              ></div>
               <div id="resumeDate"></div>
               <div id="resumeDel">
                 <FontAwesomeIcon icon="fa-solid fa-x" />
@@ -226,7 +223,7 @@ class ProfileAcc extends React.Component {
   }
 
   getCVInfo() {
-    fetch(`https://localhost:7171/getCV`, {
+    fetch(`https://localhost:7171/getCVInfo`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -240,7 +237,10 @@ class ProfileAcc extends React.Component {
       .then((obj) => {
         document.getElementById(
           "resumeDate"
-        ).innerHTML = `Last Updated: ${obj}`;
+        ).innerHTML = `Last Updated: ${obj.date}`;
+        document.getElementById(
+          "resumeTitle"
+        ).innerHTML = `${obj.fileNameType}`;
       });
   }
 
@@ -261,9 +261,9 @@ class ProfileAcc extends React.Component {
         var a = document.createElement("a");
         a.href = url;
         a.download = "filename.docx";
-        document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+        document.body.appendChild(a);
         a.click();
-        a.remove(); //afterwards we remove the element again
+        a.remove();
       });
   }
 }

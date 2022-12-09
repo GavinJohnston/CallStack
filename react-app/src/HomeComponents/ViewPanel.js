@@ -67,10 +67,48 @@ function ViewPanel(props) {
         <p id="viewPanelDescription">{props.itemInfo.descriptionArea}</p>
         <h4>Benefits</h4>
         <p id="viewPanelBenefits">{props.itemInfo.benefits}</p>
-        <div id="applyNow">Apply Now</div>
+        <div id="applyArea">
+          <div
+            id="applyNow"
+            onClick={() => {
+              sendCV(`${props.itemInfo.id}`);
+            }}
+          >
+            Apply Now
+          </div>
+        </div>
       </div>
     </div>
   );
+
+  function sendCV(AdvertId) {
+    var dataObject = new Object();
+
+    dataObject.AdvertId = AdvertId;
+
+    fetch(`https://localhost:7171/sendCV`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify(dataObject),
+    }).then(() => {
+      let applyArea = document.getElementById("applyArea");
+
+      applyArea.innerHTML = "";
+
+      var applied = document.createElement("div");
+
+      applied.id = "applied";
+      applied.innerHTML = `<b>${props.itemInfo.company}</b> has your application!`;
+
+      applyArea.appendChild(applied);
+    });
+  }
 }
 
 export default ViewPanel;

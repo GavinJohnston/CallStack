@@ -9,6 +9,7 @@ namespace CallstackAPI.Models
 	{
 		public int Id { get; set; }
         public byte[] userCV { get; set; }
+        public string FileNameType { get; set; }
         public DateTime Date { get; set; } = DateTime.Now.Date.ToLocalTime();
         public string? ApplicationUserId { get; set; }
     }

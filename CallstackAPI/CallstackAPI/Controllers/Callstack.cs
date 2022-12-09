@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Http;
 using CallstackAPI.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using System.IO.Compression;
+using Microsoft.EntityFrameworkCore.Metadata;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CallstackAPI.Controllers;
 
@@ -96,7 +98,34 @@ public class CallstackController : ControllerBase
         return Unauthorized("Invalid Authentication");
     }
 
+    [HttpPost]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("sendCV")]
+    public async Task<IActionResult> sendCV(CVView cVView)
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        var cv = await _context.CV.Where(u => u.ApplicationUserId == user.Id).FirstOrDefaultAsync();
+
+        var advert = await _context.Advert.Where(u => u.Id == cVView.AdvertId).FirstOrDefaultAsync();
+
+        cVView.CVId = cv.Id;
+        cVView.AdvertAuthorId = advert.ApplicationUserId;
+        cVView.AdvertTitle = advert.Title;
+        cVView.FullName = $"{user.FirstName} {user.LastName}";
+        cVView.Website = user.Website;
+        cVView.SkillLevel = user.SkillLevel;
+        cVView.Education = user.Education;
+        cVView.Email = user.Email;
+
+        _context.CVView.Add(cVView);
+
+        await _context.SaveChangesAsync();
+
+        return Ok(cVView);
+    }
 
     [HttpPost]
     [Authorize(AuthenticationSchemes = "Bearer")]
@@ -155,6 +184,7 @@ public class CallstackController : ControllerBase
         }
 
         cv.ApplicationUserId = user.Id;
+        cv.FileNameType = file.FileName;
 
         _context.CV.Add(cv);
 
@@ -202,8 +232,8 @@ public class CallstackController : ControllerBase
 
     [HttpGet]
     [Authorize(AuthenticationSchemes = "Bearer")]
-    [Route("getCV")]
-    public async Task<ActionResult<Advert>> getCVDate()
+    [Route("getCVInfo")]
+    public async Task<ActionResult<Advert>> getCVInfo()
     {
         var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -211,7 +241,65 @@ public class CallstackController : ControllerBase
 
         var cv = await _context.CV.Where(u => u.ApplicationUserId == user.Id).FirstOrDefaultAsync();
 
-        return Ok(cv.Date);
+        CVInfo cvInfo = new CVInfo();
+
+        cvInfo.FileNameType = cv.FileNameType;
+        cvInfo.Date = cv.Date;
+
+        return Ok(cvInfo);
+    }
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("getCVList")]
+    public async Task<ActionResult<CV>> getCVList()
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = await _userManager.Users.Where(u => u.UserName == userName).FirstOrDefaultAsync();
+
+        List<CVView> cVViews = _context.CVView.ToList();
+
+        List<CV> cvs = _context.CV.ToList();
+
+        List<CVView> advertsAuthoredList = new List<CVView>();
+
+        for(int i = 0; i < cVViews.Count; i++)
+        {
+            if (cVViews[i].AdvertAuthorId == user.Id)
+            {
+                advertsAuthoredList.Add(cVViews[i]);
+            }
+        }
+
+        List<CVsViewableDTO> CVsViewable = new List<CVsViewableDTO>();
+
+        for (int i = 0; i < cvs.Count; i++)
+        {
+            foreach (CVView element in advertsAuthoredList)
+            {
+                if (cvs[i].Id == element.CVId)
+                {
+                    CVsViewableDTO CVVObj = new CVsViewableDTO();
+
+                    CVVObj.Date = element.Date;
+                    CVVObj.FileNameType = cvs[i].FileNameType;
+                    CVVObj.AdvertTitle = element.AdvertTitle;
+                    CVVObj.AdvertId = element.AdvertId;
+                    CVVObj.FullName = element.FullName;
+                    CVVObj.SkillLevel = element.SkillLevel;
+                    CVVObj.Website = element.Website;
+                    CVVObj.Education = element.Education;
+                    CVVObj.Email = element.Email;
+                    CVVObj.CVid = element.CVId;
+
+                    CVsViewable.Add(CVVObj);
+                }
+            }
+
+        }
+
+        return Ok(CVsViewable);
     }
 
     [HttpGet]
@@ -229,6 +317,13 @@ public class CallstackController : ControllerBase
 
         return Ok(ms);
     }
+
+    [HttpPost]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("downloadCVEmployer")]
+    public async Task<ActionResult<Advert>> downloadCVEmployer(CVCheck cVCheck)
+    {
+     
 
     [HttpGet]
     [Route("approvedList")]
@@ -308,6 +403,7 @@ public class CallstackController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("updateItem/{id}")]
     public async Task<IActionResult> putInfo(int id, Advert advert)
     {
@@ -315,6 +411,12 @@ public class CallstackController : ControllerBase
         {
             return BadRequest();
         }
+
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        advert.ApplicationUserId = user.Id;
 
         _context.Entry(advert).State = EntityState.Modified;
 

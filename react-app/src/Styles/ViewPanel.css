@@ -77,3 +77,12 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+#applied {
+  border-radius: 3px;
+  display: inline-block;
+  padding: 10px;
+  color: #1f2c41;
+  font-weight: bold;
+  font-style: italic;
+}

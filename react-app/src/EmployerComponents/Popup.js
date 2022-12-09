@@ -171,13 +171,15 @@ function Popup(props) {
     fetch(`https://localhost:7171/updateItem/${id}`, {
       method: "PUT",
       headers: {
-        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json, text/plain",
         "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify(dataObject),
     })
       .then(() => {
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => console.error("Unable to update item.", error));
   }

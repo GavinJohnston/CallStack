@@ -193,6 +193,10 @@ namespace CallstackAPI.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FileNameType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("userCV")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -202,6 +206,49 @@ namespace CallstackAPI.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("CV", "Identity");
+                });
+
+            modelBuilder.Entity("CallstackAPI.Models.CVView", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdvertAuthorId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AdvertId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdvertTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CVId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Education")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SkillLevel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CVView", "Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -233,19 +280,19 @@ namespace CallstackAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "517a7a18-1e4c-4762-99bc-714eab5eda78",
+                            Id = "ae0dd6bb-f47e-4b91-bb00-e4f759e1e823",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "e833ae02-d237-4c2e-99e2-432d92165284",
+                            Id = "dbdcbd12-f1f0-49a5-86dd-52f99534e649",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "4b27ed3f-c63f-421a-8204-2ba66ae0651d",
+                            Id = "b1ada19a-7961-47cd-a6e9-e049fe139d8d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
