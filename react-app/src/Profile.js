@@ -4,6 +4,7 @@ import "./Styles/Profile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { json } from "react-router-dom";
+import Applications from "./ProfileComponents/Applications.js";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -40,7 +41,13 @@ class Profile extends React.Component {
                 >
                   Saved Jobs
                 </li>
-                <li>Applications</li>
+                <li
+                  onClick={() => {
+                    this.setTab("Applications");
+                  }}
+                >
+                  Applications
+                </li>
                 <li
                   onClick={() => {
                     this.setTab("Metrics");
@@ -71,6 +78,7 @@ class Profile extends React.Component {
     } else if (this.state.tabView === "Metrics") {
       // return <Metrics />;
     } else if (this.state.tabView === "Applications") {
+      return <Applications />;
     }
   };
 }

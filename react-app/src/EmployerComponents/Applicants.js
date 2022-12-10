@@ -146,10 +146,6 @@ class Applicants extends React.Component {
       },
       body: JSON.stringify(dataObject),
     })
-      // .then((r) => r.json())
-      // .then((obj) => {
-      //   console.log(obj);
-      // });
       .then((r) => r.blob())
       .then((blob) => {
         var url = window.URL.createObjectURL(blob);

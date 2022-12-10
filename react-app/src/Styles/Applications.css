@@ -1,0 +1,36 @@
+#MyApplicationsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 75%;
+}
+
+.applicationItem {
+  padding: 5px 0;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.applicationItem > * {
+  display: inline-block;
+  margin-bottom: 0 !important;
+  margin-right: 10px;
+}
+
+.applicationItem > p {
+  font-weight: bold;
+}
+
+.appDate {
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.appDate:hover {
+  color: red;
+}

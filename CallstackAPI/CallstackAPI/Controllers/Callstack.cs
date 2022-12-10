@@ -22,6 +22,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Utilities;
 
 namespace CallstackAPI.Controllers;
 
@@ -402,6 +403,35 @@ public class CallstackController : ControllerBase
         userAccount.Website = user.Website;
 
         return Ok(userAccount);
+    }
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("getMyApplications")]
+    public async Task<IActionResult> getApplications()
+    {
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = _userManager.Users.Where(u => u.UserName == userName).FirstOrDefault();
+
+        var applications = await _context.CVView.ToListAsync();
+
+        ApplicationsDTO MyApps = new ApplicationsDTO();
+
+        List<ApplicationsDTO> MyAppsList = new List<ApplicationsDTO>();
+
+        foreach (CVView element in applications)
+        {
+            if (element.Email == user.Email)
+            {
+                MyApps.Date = element.Date;
+                MyApps.AdvertTitle = element.AdvertTitle;
+
+                MyAppsList.Add(MyApps);
+            }
+        }
+        
+        return Ok(MyAppsList);
     }
 
     [HttpDelete]

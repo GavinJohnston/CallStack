@@ -1,9 +1,6 @@
 import "../Styles/ProfileAcc.css";
 import React from "react";
-import { data, event } from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getQueriesForElement } from "@testing-library/react";
-import { json } from "react-router-dom";
 
 class ProfileAcc extends React.Component {
   constructor(props) {
@@ -13,7 +10,7 @@ class ProfileAcc extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="formHeader">Your Profile</h2>
+        <h2 id="formHeader">Profile</h2>
         <form id="profileDataForm" onSubmit={this.updateProfile}>
           <h3 className="subHeader">Personal Details</h3>
           <div className="row">
