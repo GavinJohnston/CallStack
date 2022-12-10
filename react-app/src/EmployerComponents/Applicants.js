@@ -131,6 +131,10 @@ class Applicants extends React.Component {
   }
 
   getFile(id, filename) {
+    let dataObject = {};
+
+    dataObject.cVid = id;
+
     fetch(`https://localhost:7171/downloadCVEmployer`, {
       method: "POST",
       mode: "cors",
@@ -142,6 +146,10 @@ class Applicants extends React.Component {
       },
       body: JSON.stringify(dataObject),
     })
+      // .then((r) => r.json())
+      // .then((obj) => {
+      //   console.log(obj);
+      // });
       .then((r) => r.blob())
       .then((blob) => {
         var url = window.URL.createObjectURL(blob);

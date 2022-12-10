@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.JsonPatch;
 using System.IO.Compression;
 using Microsoft.EntityFrameworkCore.Metadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace CallstackAPI.Controllers;
 
@@ -321,9 +323,27 @@ public class CallstackController : ControllerBase
     [HttpPost]
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("downloadCVEmployer")]
-    public async Task<ActionResult<Advert>> downloadCVEmployer(CVCheck cVCheck)
+    public async Task<ActionResult<Advert>> downloadCVEmployer(CVView cVView)
     {
-     
+        var userName = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        var user = await _userManager.Users.Where(u => u.UserName == userName).FirstOrDefaultAsync();
+
+        var CvCheck = await _context.CVView.Where(u => u.CVId == cVView.CVId).FirstOrDefaultAsync();
+
+        if(CvCheck.AdvertAuthorId == user.Id)
+        {
+            var cv = await _context.CV.Where(u => u.Id == cVView.CVId).FirstOrDefaultAsync();
+
+            MemoryStream ms = new MemoryStream(cv.userCV);
+
+            return Ok(ms);
+        }
+        else
+        {
+            return BadRequest();
+        }
+    }
 
     [HttpGet]
     [Route("approvedList")]
