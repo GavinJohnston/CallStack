@@ -35,7 +35,6 @@ function Header() {
           </p>
         </a>
       </div>
-      <div className="container"></div>
       <div className="side-container">{renderOption()}</div>
     </nav>
   );

@@ -7,58 +7,65 @@ function Register() {
     <>
       <Header />
       <div className="container container-register">
-        <div id="loginPanel">
-          <h1>Register</h1>
-          <form id="register-form" onSubmit={handleSubmit}>
-            <div className="form-group form-group-login">
-              <label htmlFor="RegisterEmail">Email address</label>
-              <input
-                type="email"
-                className="form-control"
-                id="RegisterEmail"
-                name="RegisterEmail"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
-              />
-            </div>
-            <div className="form-group form-group-login">
-              <label htmlFor="RegisterPassword">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="RegisterPassword"
-                name="RegisterPassword"
-                placeholder="Password"
-              />
-            </div>
-            <div className="form-group form-group-login">
-              <label htmlFor="ConfirmRegisterPassword">Confirm Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="ConfirmRegisterPassword"
-                name="ConfirmRegisterPassword"
-                placeholder="Password"
-              />
-            </div>
-            <div className="form-group form-group-login">
-              <div className="form-check">
+        <div id="registerPanel" className="row">
+          <div className="col-lg-5">
+            <h1>Register</h1>
+            <form id="register-form" onSubmit={handleSubmit}>
+              <div className="form-group form-group-login">
+                <label htmlFor="RegisterEmail">Email address</label>
                 <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="EmployerAccCheck"
-                  name="EmployerAccCheck"
+                  type="email"
+                  className="form-control"
+                  id="RegisterEmail"
+                  name="RegisterEmail"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
                 />
-                <label className="form-check-label" htmlFor="EmployerAccCheck">
-                  I'm an Employer
-                </label>
               </div>
-            </div>
-            <button type="submit" className="btn btn-formSubmit">
-              Register
-            </button>
-            <ul id="registerformPanel"></ul>
-          </form>
+              <div className="form-group form-group-login">
+                <label htmlFor="RegisterPassword">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="RegisterPassword"
+                  name="RegisterPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="form-group form-group-login">
+                <label htmlFor="ConfirmRegisterPassword">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="ConfirmRegisterPassword"
+                  name="ConfirmRegisterPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="form-group form-group-login">
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="EmployerAccCheck"
+                    name="EmployerAccCheck"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="EmployerAccCheck"
+                  >
+                    I'm an Employer
+                  </label>
+                </div>
+              </div>
+              <button type="submit" className="btn btn-formSubmit">
+                Register
+              </button>
+              <ul id="registerformPanel"></ul>
+            </form>
+          </div>
         </div>
       </div>
       <Footer />

@@ -7,20 +7,30 @@
 }
 
 .ItemHeaderArea {
-  background-color: #1f2c41;
+  background: linear-gradient(
+    48deg,
+    rgba(0, 107, 134, 1) 0%,
+    rgba(0, 133, 166, 1) 35%
+  );
   color: white;
   padding: 10px;
   border-radius: 5px 5px 0 0;
 }
 
 .ItemHeaderArea > h2 {
-  color: #62dafb;
+  color: white;
   font-weight: bold;
+}
+
+.ItemHeaderArea > h3 {
+  font-weight: 300;
 }
 
 .ItemInfoArea {
   display: flex;
+  flex-wrap: wrap;
   padding: 10px 10px;
+  justify-content: center;
 }
 
 .ItemDescArea {
@@ -29,8 +39,17 @@
 
 .iconContainer {
   margin: 0 10px;
+  white-space: nowrap;
 }
 
 .iconContainer:first-child {
   margin-left: 0;
+}
+
+.iconContainerIcon {
+  margin-right: 10px;
+}
+
+.iconInfo {
+  display: inline-block;
 }

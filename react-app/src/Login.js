@@ -7,53 +7,42 @@ function Login() {
     <>
       <Header />
       <div className="container container-login">
-        <div id="loginPanel">
-          <h1>Login</h1>
-          <form id="login-form" onSubmit={handleSubmit}>
-            <div className="form-group form-group-login">
-              <label htmlFor="LoginEmail">Email address</label>
-              <input
-                type="email"
-                className="form-control"
-                id="LoginEmail"
-                name="LoginEmail"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
-              />
-              {/* <small id="emailHelp" class="form-text text-muted">
-                  We'll never share your email with anyone else.
-                </small> */}
-            </div>
-            <div className="form-group form-group-login">
-              <label htmlFor="LoginPassword">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="LoginPassword"
-                name="LoginPassword"
-                placeholder="Password"
-              />
-            </div>
-            {/* <div class="form-check">
+        <div className="row" id="loginPanel">
+          <div className="col-lg-5">
+            <h1>Login</h1>
+            <form id="login-form" onSubmit={handleSubmit}>
+              <div className="form-group form-group-login">
+                <label htmlFor="LoginEmail">Email address</label>
                 <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="exampleCheck1"
+                  type="email"
+                  className="form-control"
+                  id="LoginEmail"
+                  name="LoginEmail"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
                 />
-                <label class="form-check-label" for="exampleCheck1">
-                  Check me out
-                </label>
-              </div> */}
-            <button type="submit" className="btn btn-formSubmit">
-              Login
-            </button>
-            <div className="form-group form-group-login">
-              <a href="" id="forgotPass">
-                Forgot Your Password?
-              </a>
-            </div>
-            <ul id="loginformPanel"></ul>
-          </form>
+              </div>
+              <div className="form-group form-group-login">
+                <label htmlFor="LoginPassword">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="LoginPassword"
+                  name="LoginPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <button type="submit" className="btn btn-formSubmit">
+                Login
+              </button>
+              <div className="form-group form-group-login">
+                <a href="" id="forgotPass">
+                  Forgot Your Password?
+                </a>
+              </div>
+              <ul id="loginformPanel"></ul>
+            </form>
+          </div>
         </div>
       </div>
       <Footer />

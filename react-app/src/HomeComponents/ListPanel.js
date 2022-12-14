@@ -6,7 +6,11 @@ function ListPanel(props) {
   let approved = props.approved;
 
   return (
-    <div id="listPanel" onClick={viewItem}>
+    <div
+      id="listPanel"
+      onClick={viewItem}
+      className="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5"
+    >
       {approved.map((item) => (
         <ListItemPanel key={uniqid()} itemInfo={item} />
       ))}

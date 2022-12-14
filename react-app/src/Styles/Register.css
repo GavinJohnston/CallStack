@@ -5,9 +5,9 @@
 }
 
 #registerPanel {
-  width: 25vw;
-  height: 50vh;
-  margin: 50px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 h1 {

@@ -11,23 +11,41 @@ function ListItemPanel(props) {
       <div className="ItemContent">
         <div className="ItemInfoArea" data={props.itemInfo.id}>
           <div className="iconContainer">
-            <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+            <FontAwesomeIcon
+              icon="fa-solid fa-location-dot"
+              className="iconContainerIcon"
+            />
+            {props.itemInfo.location}, {props.itemInfo.country}
           </div>
-          {props.itemInfo.location}, {props.itemInfo.country}
+
           <div className="iconContainer">
-            <FontAwesomeIcon icon="fa-solid fa-sterling-sign" />
+            <FontAwesomeIcon
+              icon="fa-solid fa-sterling-sign"
+              className="iconContainerIcon"
+            />
+            {props.itemInfo.salary}
           </div>
-          {props.itemInfo.salary}
+
           <div className="iconContainer">
-            <FontAwesomeIcon icon="fa-solid fa-clock" />
+            <FontAwesomeIcon
+              icon="fa-solid fa-clock"
+              className="iconContainerIcon"
+            />
+            {props.itemInfo.jobType}
           </div>
-          {props.itemInfo.jobType}
+
           <div className="iconContainer">
-            <FontAwesomeIcon icon="fa-solid fa-building" />
+            <FontAwesomeIcon
+              icon="fa-solid fa-building"
+              className="iconContainerIcon"
+            />
+            {props.itemInfo.onSite}
           </div>
-          {props.itemInfo.onSite}
         </div>
-        <div className="ItemDescArea">{props.itemInfo.descShort}</div>
+        <div className="ItemDescArea">
+          {props.itemInfo.descShort}
+          <div id="postedDate">Posted on: {props.itemInfo.date}</div>
+        </div>
       </div>
     </div>
   );

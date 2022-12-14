@@ -13,11 +13,14 @@ function ViewPanel(props) {
   function bookmarkJob(postId) {}
 
   return (
-    <div id="viewPanel">
+    <div
+      id="viewPanel"
+      className="d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block col-7"
+    >
       <div id="viewPanelHeader">
         <div className="headerData">
-          <h2 id="viewHeaderJob">{props.itemInfo.title}</h2>
-          <h3 id="viewHeaderCompany">{props.itemInfo.company}</h3>
+          <h2 id="viewHeaderJob">{props.itemInfo.title}&nbsp; </h2>
+          <h3 id="viewHeaderCompany">{props.itemInfo.company}&nbsp; </h3>
         </div>
         <div className="bookmarkContainer">
           <FontAwesomeIcon
@@ -56,12 +59,6 @@ function ViewPanel(props) {
             </div>
             {props.itemInfo.onSite}
           </li>
-          {/* <li className="panelListItem">
-            <div className="iconContainer">
-              <FontAwesomeIcon icon="fa-solid fa-heart" />
-            </div>
-            <div>Great Benefits</div>
-          </li> */}
         </ul>
         <h4>Description</h4>
         <p id="viewPanelDescription">{props.itemInfo.descriptionArea}</p>
@@ -77,6 +74,7 @@ function ViewPanel(props) {
             Apply Now
           </div>
         </div>
+        <div id="postedDate">Posted on: {props.itemInfo.date}</div>
       </div>
     </div>
   );

@@ -23,16 +23,18 @@ class App extends React.Component {
         <Header />
         <SearchContainer />
 
-        <div className="container container-main">
-          <ListPanel
-            approved={this.state.approved}
-            onViewItem={(obj) => {
-              this.viewItem(obj);
-            }}
-          />
-          <ViewPanel itemInfo={this.state.selected} />
+        <div className="container container-main col-lg-10 col-xl-8 col-md-9 col-sm-10 col-10">
+          <div className="row">
+            <ListPanel
+              approved={this.state.approved}
+              onViewItem={(obj) => {
+                this.viewItem(obj);
+              }}
+            />
+            <ViewPanel itemInfo={this.state.selected} />
+          </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

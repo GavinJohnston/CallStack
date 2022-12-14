@@ -15,6 +15,8 @@ import {
   faFile,
   faX,
   faThumbsUp,
+  faBars,
+  faEllipsisVertical,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -36,7 +38,9 @@ library.add(
   faRightFromBracket,
   faFile,
   faX,
-  faThumbsUp
+  faThumbsUp,
+  faBars,
+  faEllipsisVertical
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

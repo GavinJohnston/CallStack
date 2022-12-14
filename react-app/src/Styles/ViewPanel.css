@@ -1,19 +1,25 @@
 #viewPanel {
   display: block;
-  width: 60%;
   height: 100%;
   margin-left: auto;
   border: 0.5px solid grey;
   border-radius: 5px;
+  padding: 0;
 }
 
 #viewPanelHeader {
-  background-color: #1f2c41;
+  background: linear-gradient(
+    48deg,
+    rgba(0, 107, 134, 1) 0%,
+    rgba(0, 133, 166, 1) 35%
+  );
   color: white;
   padding: 20px;
   cursor: default;
   position: relative;
   border-radius: 5px 5px 0 0;
+  padding: 10px;
+  width: 100%;
 }
 
 .bookmarkContainer {
@@ -26,18 +32,22 @@
   size: 2em;
   cursor: pointer;
   height: 3em;
-  stroke: #62dafb;
+  stroke: white;
   stroke-width: 20px;
   color: rgba(255, 217, 0, 0);
 }
 
 #viewHeaderJob {
-  color: #62dafb;
-  font-weight: bold;
+  color: white;
+  font-weight: bolder;
+}
+
+#viewHeaderCompany {
+  font-weight: 300;
 }
 
 #viewPanelDescriptionArea {
-  margin: 20px;
+  padding: 10px 15px;
   cursor: default;
 }
 
@@ -45,19 +55,20 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+#viewPanelList > * {
+  padding-bottom: 10px;
 }
 
 .panelListItem {
-  display: flex;
-  margin: 7.5px 0;
+  margin: 0 10px 0 0;
   cursor: default;
 }
 
-.iconContainer {
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.panelListItem > * {
+  display: inline-block;
 }
 
 .listItemBenefits {
@@ -68,12 +79,12 @@
 }
 
 #applyNow {
-  border: 1px solid #1f2c41;
+  border: 1px solid #0085a6;
   border-radius: 3px;
-  background-color: #1f2c41;
+  background-color: #0085a6;
   display: inline-block;
   padding: 10px;
-  color: #62dafb;
+  color: white;
   cursor: pointer;
   font-weight: bold;
 }
@@ -81,8 +92,15 @@
 #applied {
   border-radius: 3px;
   display: inline-block;
-  padding: 10px;
+  padding: 10px 0;
   color: #1f2c41;
   font-weight: bold;
   font-style: italic;
+}
+
+#postedDate {
+  font-style: italic;
+  margin: 10px 0;
+  color: rgb(66, 65, 65);
+  font-size: 0.9em;
 }

@@ -1,29 +1,20 @@
 .navbar {
-  background-color: #1f2c41;
+  background: linear-gradient(
+    48deg,
+    rgba(0, 107, 134, 1) 0%,
+    rgba(0, 133, 166, 1) 35%
+  );
   height: 12.5vh;
   display: flex;
   flex-direction: row;
-}
-
-.container {
-  width: 70%;
-  height: 100%;
-}
-
-.side-container {
-  width: 15%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px;
+  justify-content: space-between !important;
+  padding: 0 100px !important;
 }
 
 #logo {
   color: white;
   margin: 0;
   text-transform: uppercase;
-
   font-size: 1.5em;
   font-weight: bold;
   cursor: pointer;
@@ -39,7 +30,7 @@
   color: white;
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1.3em;
   font-weight: bold;
 }
 
@@ -48,10 +39,21 @@
 }
 
 .linkBtns:hover {
-  color: #62dafb !important;
+  color: white !important;
 }
 
 #linkBtnsExit {
   font-size: 1.2em;
   cursor: pointer;
+}
+
+#burgerMenu {
+  color: rgb(228, 227, 227);
+  cursor: pointer;
+  font-size: 1.7rem;
+  display: inline-block;
+}
+
+#burgerMenu:hover {
+  color: white;
 }

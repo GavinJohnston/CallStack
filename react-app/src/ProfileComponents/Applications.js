@@ -41,7 +41,7 @@ class Applications extends React.Component {
           MyApplicationItem.innerHTML = `
           <p>${element.advertTitle}<p> 
           <div>Applied on ${element.date}</div>
-          <div class="appDate">Delete</div>
+          <div class="appDate">Revoke</div>
           `;
 
           MyApplicationItem.className = "applicationItem";
