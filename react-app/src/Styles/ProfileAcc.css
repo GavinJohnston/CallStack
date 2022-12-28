@@ -100,3 +100,15 @@ form {
   font-size: 1.5em;
   display: none;
 }
+
+.profileContentBox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 70vh;
+}
+
+.profileContentBox > * {
+  width: 50%;
+  padding-right: 50px;
+}

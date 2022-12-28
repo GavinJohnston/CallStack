@@ -32,51 +32,88 @@ class Employer extends React.Component {
         <Header />
         <div id="manager-content">
           <div className="container container-main">
-            <div id="profile-menu">
-              <div id="profile-menu-content">
-                <a href="/">
-                  {" "}
-                  <h3 id="profile-menu-title">
-                    <FontAwesomeIcon icon="fa-solid fa-house" />
-                  </h3>
-                </a>
-                <ul id="profile-menu-list">
-                  <li
-                    onClick={() => {
-                      this.setTab("Account");
-                    }}
-                  >
-                    Account
-                  </li>
-                  <li
-                    onClick={() => {
-                      this.setTab("Post");
-                    }}
-                  >
-                    Post Ad
-                  </li>
-                  <li
-                    onClick={() => {
-                      this.setTab("PostManage");
-                    }}
-                  >
-                    Manage Ads
-                  </li>
-                  <li
-                    onClick={() => {
-                      this.setTab("Applicants");
-                    }}
-                  >
-                    Applicants
-                  </li>
-                  <li
-                    onClick={() => {
-                      this.setTab("Metrics");
-                    }}
-                  >
-                    Metrics
-                  </li>
-                </ul>
+            <div className="row">
+              <div
+                id="profile-col"
+                className="d-none d-sm-block d-sm-none d-md-block"
+              >
+                <div id="profile-menu">
+                  <div id="profile-menu-content">
+                    <a href="/">
+                      {" "}
+                      <h3 id="profile-menu-title">
+                        <FontAwesomeIcon icon="fa-solid fa-house" />
+                      </h3>
+                    </a>
+                    <ul id="profile-menu-list">
+                      <li
+                        onClick={() => {
+                          this.setTab("Account");
+                        }}
+                      >
+                        Account
+                      </li>
+                      <li
+                        onClick={() => {
+                          this.setTab("Post");
+                        }}
+                      >
+                        Post Ad
+                      </li>
+                      <li
+                        onClick={() => {
+                          this.setTab("PostManage");
+                        }}
+                      >
+                        Manage Ads
+                      </li>
+                      <li
+                        onClick={() => {
+                          this.setTab("Applicants");
+                        }}
+                      >
+                        Applicants
+                      </li>
+                      <li
+                        onClick={() => {
+                          this.setTab("Metrics");
+                        }}
+                      >
+                        Metrics
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                id="profile-col"
+                className="d-block d-sm-block d-sm-block d-md-none"
+              >
+                <div id="profile-menu">
+                  <div id="profile-menu-content">
+                    <a href="/">
+                      {" "}
+                      <h3 id="profile-menu-title">
+                        <FontAwesomeIcon icon="fa-solid fa-house" />
+                      </h3>
+                    </a>
+                    <select
+                      name="profMenu"
+                      id="profMenu"
+                      onChange={() => {
+                        this.selectTab();
+                      }}
+                    >
+                      <option value="Account" selected="selected">
+                        Account
+                      </option>
+                      <option value="Post">Post</option>
+                      <option value="Post Manage">Post Manage</option>
+                      <option value="Applicants">Applicants</option>
+                      <option value="Metrics">Metrics</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
             {this.renderOption()}
@@ -86,6 +123,14 @@ class Employer extends React.Component {
       </div>
     );
   }
+
+  selectTab = () => {
+    let value = document.getElementById("profMenu").value;
+
+    this.setState({
+      tabView: value,
+    });
+  };
 
   setTab = (tab) => {
     this.setState({

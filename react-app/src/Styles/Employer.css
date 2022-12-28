@@ -5,11 +5,12 @@
 
 #profile-menu {
   display: inline-block;
+  width: 100%;
+  overflow: hidden;
 }
 
 #profile-menu > * {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -28,4 +29,19 @@
   z-index: 8;
   display: none;
   cursor: pointer;
+}
+
+#profMenu {
+  background-color: rgba(240, 248, 255, 0);
+  margin: 10px;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: 10px;
+  color: #0085a6;
+  cursor: pointer;
+  font-weight: bold;
+  border: 0.5px solid #0085a6;
+  height: 75%;
+  padding: 5px 10px;
+  border-radius: 2px;
 }

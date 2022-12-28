@@ -1,0 +1,11 @@
+.employerContentBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 70vh;
+}
+
+.employerContentBox > * {
+  width: 50%;
+  padding-right: 50px;
+}
