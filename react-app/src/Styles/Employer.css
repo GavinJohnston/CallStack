@@ -45,3 +45,9 @@
   padding: 5px 10px;
   border-radius: 2px;
 }
+
+.profile-menu-mini {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

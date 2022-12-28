@@ -33,10 +33,7 @@ class Employer extends React.Component {
         <div id="manager-content">
           <div className="container container-main">
             <div className="row">
-              <div
-                id="profile-col"
-                className="d-none d-sm-block d-sm-none d-md-block"
-              >
+              <div className="d-none d-sm-block d-sm-none d-md-block">
                 <div id="profile-menu">
                   <div id="profile-menu-content">
                     <a href="/">
@@ -90,7 +87,7 @@ class Employer extends React.Component {
                 className="d-block d-sm-block d-sm-block d-md-none"
               >
                 <div id="profile-menu">
-                  <div id="profile-menu-content">
+                  <div id="profile-menu-content" className="profile-menu-mini">
                     <a href="/">
                       {" "}
                       <h3 id="profile-menu-title">
@@ -108,7 +105,7 @@ class Employer extends React.Component {
                         Account
                       </option>
                       <option value="Post">Post</option>
-                      <option value="Post Manage">Post Manage</option>
+                      <option value="PostManage">Post Manage</option>
                       <option value="Applicants">Applicants</option>
                       <option value="Metrics">Metrics</option>
                     </select>
