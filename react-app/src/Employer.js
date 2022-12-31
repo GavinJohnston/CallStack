@@ -116,7 +116,6 @@ class Employer extends React.Component {
             {this.renderOption()}
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
