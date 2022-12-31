@@ -1,6 +1,4 @@
-import { data } from "jquery";
 import React from "react";
-import { json } from "react-router-dom";
 import "../Styles/Applicants.css";
 
 class Applicants extends React.Component {
@@ -15,9 +13,20 @@ class Applicants extends React.Component {
     return (
       <div>
         <h2 id="formHeader">Applicants</h2>
-        <div id="ApplicantsContent">
-          <ul id="applicantsList"></ul>
-          <div id="ApplicantsView">
+        <div className="row">
+          <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12">
+            <select
+              id="applicantTitles"
+              onChange={() => {
+                this.showApplicationsList();
+              }}
+            ></select>
+            <ul id="applicationsList"></ul>
+          </div>
+          <div
+            id="ApplicantsView"
+            className="d-none d-sm-none d-md-none d-lg-block col-lg-6 col-xl-6"
+          >
             <div className="sectionHeaders">Name</div>
             <h5 className="sectionContent" id="appfullName">
               &nbsp;
@@ -84,38 +93,52 @@ class Applicants extends React.Component {
           applicants: sortedOBJ,
         });
 
-        this.generateLists();
+        this.generateTitleBox();
       });
   }
 
-  generateLists() {
+  generateTitleBox() {
     let Applicants = this.state.applicants;
 
-    let applicantsList = document.getElementById("applicantsList");
-    applicantsList.innerHTML = "";
+    let applicantTitles = document.getElementById("applicantTitles");
 
-    let listTitle = document.createElement("li");
-    listTitle.className = "listTitle";
+    let applicantTitle = document.createElement("option");
 
-    let listItem = document.createElement("li");
-    listItem.className = "ListApplicant";
+    for (var array in Applicants) {
+      applicantTitle.setAttribute("value", array);
+      applicantTitle.innerHTML = array;
 
-    for (const property in Applicants) {
-      listTitle.innerHTML = property;
+      applicantTitles.appendChild(applicantTitle);
 
-      applicantsList.appendChild(listTitle);
+      this.showApplicationsList(Applicants);
+    }
+  }
 
-      let array = Applicants[property];
+  showApplicationsList(Applicants) {
+    let title = document.getElementById("applicantTitles").value;
 
-      for (let i = 0; i < array.length; i++) {
-        listItem.innerHTML = `${array[i].fullName} applied on ${array[i].date}`;
-        listItem.addEventListener("click", () => {
-          this.viewApplication(array[i]);
-        });
+    let titleArray;
 
-        applicantsList.appendChild(listItem);
+    for (var array in Applicants) {
+      if (array == title) {
+        titleArray = Applicants[array];
       }
     }
+
+    let applicationsList = document.getElementById("applicationsList");
+
+    let applicationsItem = document.createElement("li");
+    applicationsItem.className = "applicationsItem";
+
+    titleArray.forEach((item) => {
+      applicationsItem.innerHTML = `${item.fullName} applied on ${item.date}`;
+
+      applicationsList.appendChild(applicationsItem);
+
+      applicationsItem.addEventListener("click", () => {
+        this.viewApplication(item);
+      });
+    });
   }
 
   viewApplication(obj) {

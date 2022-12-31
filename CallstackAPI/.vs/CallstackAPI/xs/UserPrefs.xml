@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{9623D5AA-C685-4E72-8778-DC0F22A16BF7}|https">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.CallstackAPI PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="CallstackAPI/Controllers/Callstack.cs">
     <Files>
@@ -28,4 +27,5 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.CallstackAPI PreferredExecutionTarget="/Applications/Firefox.app" />
 </Properties>

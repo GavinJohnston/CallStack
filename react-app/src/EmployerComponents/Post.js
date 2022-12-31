@@ -6,8 +6,8 @@ function Post() {
     <div>
       <form id="postAdvertForm" onSubmit={handleSubmit}>
         <h2 id="formHeader">Post Advertisement</h2>
-        <div id="formPanels">
-          <div className="formPanel" id="formPanelLeft">
+        <div className="row form-containers">
+          <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12">
             <div className="row">
               <div className="col">
                 <input
@@ -94,6 +94,7 @@ function Post() {
                   rows="4"
                   placeholder="List Each Job Benefit Seperate By A Comma"
                   name="benefits"
+                  style={{ resize: "none" }}
                 ></textarea>
               </div>
             </div>
@@ -105,33 +106,44 @@ function Post() {
                   rows="4"
                   placeholder="Write a short job bio"
                   name="DescShort"
+                  style={{ resize: "none" }}
                 ></textarea>
               </div>
             </div>
           </div>
-          <div className="formPanel" id="formPanelRight">
-            <textarea
-              className="form-control"
-              id="descArea"
-              placeholder="Job Description"
-              name="descriptionArea"
-            ></textarea>
-            <div id="submitArea">
-              <div id="submitBtns">
-                <button
-                  type="submit"
-                  id="postFormSubmit"
-                  className="postFormBtn"
-                >
-                  Submit
-                </button>
-                <button
-                  type="submit"
-                  id="postFormClear"
-                  className="postFormBtn"
-                >
-                  Clear
-                </button>
+          <div className="right-col col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12">
+            <div id="descCol">
+              <div className="row">
+                <div className="col">
+                  <textarea
+                    className="form-control"
+                    placeholder="Job Description"
+                    name="descriptionArea"
+                    id="descArea"
+                  ></textarea>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <div id="submitArea">
+                    <div id="submitBtns">
+                      <button
+                        type="submit"
+                        id="postFormClear"
+                        className="postFormBtn"
+                      >
+                        Clear
+                      </button>
+                      <button
+                        type="submit"
+                        id="postFormSubmit"
+                        className="postFormBtn"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
