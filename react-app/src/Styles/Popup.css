@@ -1,7 +1,8 @@
 #popupBackground {
-  width: 60vw;
   background-color: white;
   position: absolute;
+  max-height: 75%;
+  margin-top: 50px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -10,6 +11,8 @@
   border-radius: 5px;
   padding: 15px;
   display: none;
+  overflow: scroll;
+  width: 100%;
 }
 
 #postFormDelete {
@@ -28,6 +31,35 @@
   margin: 5px;
 }
 
-#formTitle {
-  margin-bottom: 10px;
+#submitArea {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+label {
+  color: rgb(82, 82, 82);
+  font-size: 0.8em;
+}
+
+#formPanelLeft > .row {
+  margin-bottom: 5px;
+}
+
+#isApprovedLabel {
+  font-size: 1em;
+}
+
+#popupRow {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#popupCol {
+  position: relative;
 }

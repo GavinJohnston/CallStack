@@ -1,0 +1,11 @@
+#returnBtn {
+  font-size: 1.5rem;
+  color: #0085a6;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block;
+}
+
+#returnBtn:hover {
+  text-decoration: underline;
+}

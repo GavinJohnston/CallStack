@@ -50,8 +50,8 @@ class EmployerAcc extends React.Component {
                 </div>
                 <button type="submit">Submit</button>
               </form>
-            </div>
-            <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12">
+              {/* </div>
+            <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12"> */}
               <form id="profileDataForm">
                 <h3 className="subHeader">Update Password</h3>
                 <div className="row">

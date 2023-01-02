@@ -171,8 +171,9 @@ class Applicants extends React.Component {
         this.viewApplication(item);
       });
     });
-
-    this.viewApplication(titleArray[0]);
+    if (window.innerWidth >= 990) {
+      this.viewApplication(titleArray[0]);
+    }
   }
 
   viewApplication(obj) {

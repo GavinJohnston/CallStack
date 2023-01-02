@@ -8,6 +8,7 @@ import React from "react";
 import Footer from "./HomeComponents/Footer.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Applicants from "./EmployerComponents/Applicants";
+import DataPage from "./EmployerComponents/DataPage.js";
 
 class Employer extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Employer extends React.Component {
       notApproved: [],
       approved: [],
       tabView: "Account",
+      itemInfo: "",
     };
   }
 
@@ -138,11 +140,30 @@ class Employer extends React.Component {
     if (this.state.tabView === "Post") {
       return <Post />;
     } else if (this.state.tabView === "PostManage") {
-      return <PostManage Lists={this.state} />;
+      return (
+        <PostManage
+          Lists={this.state}
+          ViewDataPage={(itemInfo) => {
+            this.setState({
+              tabView: "DataPage",
+              itemInfo: itemInfo,
+            });
+          }}
+        />
+      );
     } else if (this.state.tabView === "Account") {
       return <EmployerAcc />;
     } else if (this.state.tabView === "Applicants") {
       return <Applicants Lists={this.state.approved} />;
+    } else if (this.state.tabView === "DataPage") {
+      return (
+        <DataPage
+          tabView={() => {
+            this.setTab("PostManage");
+          }}
+          Item={this.state.itemInfo}
+        />
+      );
     }
   };
 
