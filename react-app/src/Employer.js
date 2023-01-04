@@ -1,7 +1,6 @@
 import "./Styles/Employer.css";
 import Header from "./HomeComponents/Header.js";
 import Post from "./EmployerComponents/Post.js";
-import Popup from "./EmployerComponents/Popup.js";
 import EmployerAcc from "./EmployerComponents/EmployerAcc.js";
 import PostManage from "./EmployerComponents/PostManage.js";
 import React from "react";
@@ -14,6 +13,7 @@ class Employer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      viewable: [],
       notApproved: [],
       approved: [],
       tabView: "Account",
@@ -24,7 +24,6 @@ class Employer extends React.Component {
   render() {
     return (
       <div>
-        <Popup />
         <div
           id="popup-back"
           onClick={() => {
@@ -34,7 +33,7 @@ class Employer extends React.Component {
         <Header />
         <div id="manager-content">
           <div className="container container-main">
-            <div className="row">
+            <div className="row" id="employerContent">
               <div className="d-none d-sm-block d-sm-none d-md-block">
                 <div id="profile-menu">
                   <div id="profile-menu-content">
@@ -149,6 +148,9 @@ class Employer extends React.Component {
               itemInfo: itemInfo,
             });
           }}
+          updateList={() => {
+            this.updateList();
+          }}
         />
       );
     } else if (this.state.tabView === "Account") {
@@ -164,6 +166,34 @@ class Employer extends React.Component {
           Item={this.state.itemInfo}
         />
       );
+    }
+  };
+
+  updateList = () => {
+    let status;
+
+    if (document.getElementsByClassName("deselected").length == 0) {
+      this.setState({
+        viewable: this.state.approved.concat(this.state.notApproved),
+      });
+    } else if (document.getElementsByClassName("deselected").length == 1) {
+      status = document
+        .getElementsByClassName("deselected")[0]
+        .getAttribute("id");
+    } else if (document.getElementsByClassName("deselected").length == 2) {
+      this.setState({
+        viewable: [],
+      });
+    }
+
+    if (status == "showAwaiting") {
+      this.setState({
+        viewable: this.state.approved,
+      });
+    } else if (status == "showLive") {
+      this.setState({
+        viewable: this.state.notApproved,
+      });
     }
   };
 
@@ -202,6 +232,7 @@ class Employer extends React.Component {
     this.setState({
       approved: Approved,
       notApproved: AwaitingApproval,
+      viewable: Approved.concat(AwaitingApproval),
     });
   }
 }

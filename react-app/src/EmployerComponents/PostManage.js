@@ -2,47 +2,80 @@ import ListItemManager from "./ListItemManager.js";
 import React from "react";
 import uniqid from "uniqid";
 import "../Styles/PostManage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { tab } from "@testing-library/user-event/dist/tab.js";
+import { render } from "@testing-library/react";
 
-function postManage(props) {
-  let notApproved = props.Lists.notApproved;
-  let approved = props.Lists.approved;
+class postManage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div id="postManage">
-      <h2 id="formHeader">Manage Advertisements</h2>
-      <div className="row" id="postManageContent">
-        <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12">
-          <div id="AdContainerAwaiting" className="adContainer">
-            <h4 id="approvalHeader">Saved Ads</h4>
-            <ul id="awaitingApproval">{generateData(notApproved)}</ul>
-          </div>
-        </div>
-        <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12">
-          <div id="AdContainerApproved" className="adContainer">
-            <h4 id="approvalHeader">Live Ads</h4>
-            <ul id="Approved">{generateData(approved)}</ul>
+  render() {
+    return (
+      <div id="postManage">
+        <h2 id="formHeader">Manage Advertisements</h2>
+        <div className="row" id="postManageContent">
+          <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12">
+            <div id="sortMenu">
+              <p
+                className="showFilter"
+                id="showLive"
+                onClick={() => {
+                  this.filterList("showLive");
+                }}
+              >
+                Live
+              </p>
+              <p>|</p>
+              <p
+                className="showFilter"
+                id="showAwaiting"
+                onClick={() => {
+                  this.filterList("showAwaiting");
+                }}
+              >
+                Awaiting Approval
+              </p>
+              <p>|</p>
+              <p id="rotateList">
+                <FontAwesomeIcon icon="fa-solid fa-rotate" />
+              </p>
+            </div>
+            <ul id="advertList">{this.generateData()}</ul>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 
-  function generateData(type) {
-    if (type.length > 0) {
-      return type.map((item) => (
+  filterList = (status) => {
+    if (document.getElementById(status).className == "deselected") {
+      document.getElementById(status).className = "";
+    } else {
+      document.getElementById(status).className = "deselected";
+    }
+
+    this.props.updateList();
+  };
+
+  generateData = () => {
+    let Lists = this.props.Lists.viewable;
+
+    if (Lists.length > 0) {
+      return Lists.map((item) => (
         <ListItemManager
           key={uniqid()}
           itemInfo={item}
           ViewDataPage={(itemInfo) => {
-            props.ViewDataPage(itemInfo);
+            this.props.ViewDataPage(itemInfo);
           }}
         />
       ));
     } else {
       return <li id="noAds">No Advertisements to show.</li>;
     }
-  }
+  };
 }
 
 export default postManage;

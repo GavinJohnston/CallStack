@@ -9,3 +9,13 @@
 #returnBtn:hover {
   text-decoration: underline;
 }
+
+#submitArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#isApprovedLabel {
+  margin-right: 10px;
+}

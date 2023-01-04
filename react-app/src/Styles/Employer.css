@@ -55,3 +55,7 @@
 .col12 {
   border: 1px solid red;
 }
+
+#employerContent {
+  margin-bottom: 0;
+}

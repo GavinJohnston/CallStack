@@ -1,6 +1,15 @@
+import React, { useState, useEffect } from "react";
 import "../Styles/DataPage.css";
 
 function DataPage(props) {
+  useEffect(() => {
+    if (props.Item.isApproved == true) {
+      document.getElementById("isApproved").checked = true;
+    } else {
+      document.getElementById("isApproved").checked = false;
+    }
+  });
+
   return (
     <>
       <p
@@ -139,45 +148,51 @@ function DataPage(props) {
                     ></textarea>
                   </div>
                 </div>
-              </div>
-              <div className="formPanel" id="formPanelRight">
-                <label>Full Description</label>
-                <textarea
-                  className="form-control"
-                  id="descArea"
-                  placeholder="Job Description"
-                  name="descriptionArea"
-                  defaultValue={props.Item.descriptionArea}
-                ></textarea>
-                <div id="submitArea">
-                  <div id="submitBtns">
-                    <button
-                      type="submit"
-                      id="postFormDelete"
-                      className="postFormBtn"
-                      onClick={deleteAdvert}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      type="submit"
-                      id="postFormUpdate"
-                      className="postFormBtn"
-                      onClick={updateAdvert}
-                    >
-                      Update
-                    </button>
+                <div className="row">
+                  <div className="col">
+                    <label>Full Description</label>
+                    <textarea
+                      className="form-control"
+                      id="descArea"
+                      placeholder="Job Description"
+                      name="descriptionArea"
+                      defaultValue={props.Item.descriptionArea}
+                    ></textarea>
                   </div>
-                  <div id="liveContainer">
-                    <div id="liveBox">
-                      <label htmlFor="isApproved" id="isApprovedLabel">
-                        Approve:{" "}
-                      </label>
-                      <input
-                        type="checkbox"
-                        id="isApproved"
-                        name="isApproved"
-                      />
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <div id="submitArea">
+                      <div id="submitBtns">
+                        <button
+                          type="submit"
+                          id="postFormDelete"
+                          className="postFormBtn"
+                          onClick={deleteAdvert}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          type="submit"
+                          id="postFormUpdate"
+                          className="postFormBtn"
+                          onClick={updateAdvert}
+                        >
+                          Update
+                        </button>
+                      </div>
+                      <div id="liveContainer">
+                        <div id="liveBox">
+                          <label htmlFor="isApproved" id="isApprovedLabel">
+                            Approve
+                          </label>
+                          <input
+                            type="checkbox"
+                            id="isApproved"
+                            name="isApproved"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

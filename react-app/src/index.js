@@ -17,6 +17,8 @@ import {
   faThumbsUp,
   faBars,
   faEllipsisVertical,
+  faArrowRight,
+  faRotate,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -40,7 +42,9 @@ library.add(
   faX,
   faThumbsUp,
   faBars,
-  faEllipsisVertical
+  faEllipsisVertical,
+  faArrowRight,
+  faRotate
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

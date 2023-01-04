@@ -1,5 +1,7 @@
 import React from "react";
+import uniqid from "uniqid";
 import "../Styles/Applicants.css";
+import ApplicantViewer from "./ApplicantViewer.js";
 
 class Applicants extends React.Component {
   constructor(props) {
@@ -15,66 +17,11 @@ class Applicants extends React.Component {
         <h2 id="formHeader">Applicants</h2>
         <div className="row">
           <div
-            className="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-12"
+            className="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12"
             id="applicationsCol"
           >
-            <div id="applicationViewer">
-              <div
-                id="closeApplicationViewer"
-                onClick={() => {
-                  let ApplicationViewer =
-                    document.getElementById("applicationViewer");
-
-                  ApplicationViewer.style.display = "none";
-                }}
-              >
-                Close
-              </div>
-              <div className="sectionHeaders">Name</div>
-              <h5 className="sectionContent appfullName">&nbsp;</h5>
-              <div className="sectionHeaders">Applied for</div>
-              <h5 className="sectionContent appadvertTitle">&nbsp;</h5>
-              <div className="sectionHeaders">On</div>
-              <h5 className="sectionContent appdate">&nbsp;</h5>
-              <div className="sectionHeaders">Education</div>
-              <h5 className="sectionContent appeducation">&nbsp;</h5>
-              <div className="sectionHeaders">Skill Level</div>
-              <h5 className="sectionContent appskillLevel">&nbsp;</h5>
-              <div className="sectionHeaders">Website</div>
-              <h5 className="sectionContent appwebsite">&nbsp;</h5>
-              <div className="sectionHeaders">E-Mail</div>
-              <h5 className="sectionContent appemail">&nbsp;</h5>
-              <div className="sectionHeaders">CV</div>
-              <h5 className="sectionContent appfileNameType"></h5>
-            </div>
-            <select
-              id="applicantTitles"
-              onChange={() => {
-                this.showApplicationsList();
-              }}
-            ></select>
+            <select id="applicantTitles" onChange={() => {}}></select>
             <ul id="applicationsList"></ul>
-          </div>
-          <div
-            id="ApplicantsView"
-            className="d-none d-sm-none d-md-none d-lg-block col-lg-6 col-xl-6"
-          >
-            <div className="sectionHeaders">Name</div>
-            <h5 className="sectionContent appfullName">&nbsp;</h5>
-            <div className="sectionHeaders">Applied for</div>
-            <h5 className="sectionContent appadvertTitle">&nbsp;</h5>
-            <div className="sectionHeaders">On</div>
-            <h5 className="sectionContent appdate">&nbsp;</h5>
-            <div className="sectionHeaders">Education</div>
-            <h5 className="sectionContent appeducation">&nbsp;</h5>
-            <div className="sectionHeaders">Skill Level</div>
-            <h5 className="sectionContent appskillLevel">&nbsp;</h5>
-            <div className="sectionHeaders">Website</div>
-            <h5 className="sectionContent appwebsite">&nbsp;</h5>
-            <div className="sectionHeaders">E-Mail</div>
-            <h5 className="sectionContent appemail">&nbsp;</h5>
-            <div className="sectionHeaders">CV</div>
-            <h5 className="sectionContent appfileNameType"></h5>
           </div>
         </div>
       </div>
@@ -91,12 +38,6 @@ class Applicants extends React.Component {
         applicationViewer.style.display = "none";
       }
     });
-  }
-
-  closeApplicationViewer() {
-    let applicationViewer = document.getElementById("applicationViewer");
-
-    applicationViewer.style.display = "none";
   }
 
   getCVs() {
@@ -141,66 +82,6 @@ class Applicants extends React.Component {
       applicantTitle.innerHTML = array;
 
       applicantTitles.appendChild(applicantTitle);
-
-      this.showApplicationsList(Applicants);
-    }
-  }
-
-  showApplicationsList(Applicants) {
-    let title = document.getElementById("applicantTitles").value;
-
-    let titleArray;
-
-    for (var array in Applicants) {
-      if (array == title) {
-        titleArray = Applicants[array];
-      }
-    }
-
-    let applicationsList = document.getElementById("applicationsList");
-
-    let applicationsItem = document.createElement("li");
-    applicationsItem.className = "applicationsItem";
-
-    titleArray.forEach((item) => {
-      applicationsItem.innerHTML = `${item.fullName} applied on ${item.date}`;
-
-      applicationsList.appendChild(applicationsItem);
-
-      applicationsItem.addEventListener("click", () => {
-        this.viewApplication(item);
-      });
-    });
-    if (window.innerWidth >= 990) {
-      this.viewApplication(titleArray[0]);
-    }
-  }
-
-  viewApplication(obj) {
-    if (window.innerWidth >= 990) {
-      Object.keys(obj).forEach((key) => {
-        if (document.getElementsByClassName(`app${key}`)[1] !== undefined) {
-          document.getElementsByClassName(`app${key}`)[1].textContent =
-            obj[key];
-        }
-      });
-      document.getElementsByClassName("appfileNameType")[1].onclick = () => {
-        this.getFile(obj.cVid, obj.fileNameType);
-      };
-    } else {
-      let applicationViewer = document.getElementById("applicationViewer");
-
-      applicationViewer.style.display = "block";
-
-      Object.keys(obj).forEach((key) => {
-        if (document.getElementsByClassName(`app${key}`)[0] !== undefined) {
-          document.getElementsByClassName(`app${key}`)[0].textContent =
-            obj[key];
-        }
-      });
-      document.getElementsByClassName("appfileNameType")[0].onclick = () => {
-        this.getFile(obj.cVid, obj.fileNameType);
-      };
     }
   }
 

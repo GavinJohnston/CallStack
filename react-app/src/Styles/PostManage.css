@@ -2,8 +2,7 @@
   width: 100%;
 }
 
-#awaitingApproval,
-#Approved {
+#advertList {
   list-style: none;
   margin-bottom: 20px;
   padding: 0;
@@ -16,4 +15,48 @@
 #noAds {
   color: rgb(50, 50, 50);
   font-size: 1.2em;
+}
+
+#sortMenu {
+  margin-bottom: 20px;
+}
+
+#sortMenu > * {
+  font-size: 1.1em;
+  cursor: default;
+  height: 100%;
+  display: inline-block;
+}
+
+#filter {
+  margin-right: 15px;
+}
+
+#showLive {
+  margin-right: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #0f7173;
+}
+
+#showAwaiting {
+  margin: 0 15px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #f05d5e;
+}
+
+.deselected {
+  text-decoration: line-through;
+}
+
+#rotateList {
+  margin-left: 15px;
+  cursor: pointer;
+  color: rgb(94, 94, 94);
+  font-size: 0.95em;
+}
+
+#rotateList:hover {
+  color: black;
 }
