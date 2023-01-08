@@ -2,13 +2,12 @@ import React from "react";
 import uniqid from "uniqid";
 import "../Styles/Applicants.css";
 import ApplicantViewer from "./ApplicantViewer.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
 
 class Applicants extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      applicants: [],
-    };
   }
 
   render() {
@@ -20,98 +19,128 @@ class Applicants extends React.Component {
             className="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12"
             id="applicationsCol"
           >
-            <select id="applicantTitles" onChange={() => {}}></select>
-            <ul id="applicationsList"></ul>
+            <div id="tableSort">
+              <select id="applicantTitles">
+                <option>Show All</option>
+                {this.generateTitles()}
+              </select>
+              <form
+                id="sortTitle"
+                name="sortTitle"
+                onChange={() => {
+                  this.sortData();
+                }}
+              >
+                Sort: <label htmlFor="Job Title">Job Title</label>
+                <input
+                  type="radio"
+                  id="Job Title"
+                  name="sortedSelection"
+                  value="advertTitle"
+                />
+                <label htmlFor="Applied">Applied</label>
+                <input
+                  type="radio"
+                  id="Applied"
+                  name="sortedSelection"
+                  value="date"
+                />
+                <label htmlFor="Education">Education Level</label>
+                <input
+                  type="radio"
+                  id="Education"
+                  name="sortedSelection"
+                  value="education"
+                />
+                <label htmlFor="Skill Level">Skill Level</label>
+                <input
+                  type="radio"
+                  id="Skill Level"
+                  name="sortedSelection"
+                  value="skillLevel"
+                />
+              </form>
+            </div>
+            <table id="applicantTable">
+              <thead>
+                <tr id="applicantHeader">
+                  <th>
+                    <div>Job Title</div>
+                  </th>
+                  <th>
+                    <div>Name</div>
+                  </th>
+                  <th>
+                    <div>Applied On</div>
+                  </th>
+                  <th>
+                    <div>Education Level</div>
+                  </th>
+                  <th>
+                    <div>Skill Level</div>
+                  </th>
+                  <th>
+                    <div>Website / Portfolio</div>
+                  </th>
+                  <th>
+                    <div>CV</div>
+                  </th>
+                  <th>
+                    <div>
+                      <FontAwesomeIcon icon="fa-solid fa-check" />
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>{this.generateData()}</tbody>
+            </table>
+            <div id="tableOptions">
+              <p id="deleteCV">
+                Reject{"  "}
+                <FontAwesomeIcon icon="fa-solid fa-trash-can" />
+              </p>
+              <p id="sendLike">
+                Like {"  "}
+                <FontAwesomeIcon icon="fa-solid fa-thumbs-up" />
+              </p>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 
-  componentDidMount() {
-    this.getCVs();
+  generateTitles = () => {
+    let Lists = this.props.Applicants;
 
-    let applicationViewer = document.getElementById("applicationViewer");
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= 990) {
-        applicationViewer.style.display = "none";
-      }
-    });
-  }
-
-  getCVs() {
-    fetch(`https://localhost:7171/getCVList`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Accept: "application/json, text/plain",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((r) => r.json())
-      .then((obj) => {
-        var sortedOBJ = {};
-
-        for (var i = 0, max = obj.length; i < max; i++) {
-          if (sortedOBJ[obj[i].advertTitle] == undefined) {
-            sortedOBJ[obj[i].advertTitle] = [];
-          }
-          sortedOBJ[obj[i].advertTitle].push(obj[i]);
-        }
-
-        this.setState({
-          applicants: sortedOBJ,
-        });
-
-        this.generateTitleBox();
-      });
-  }
-
-  generateTitleBox() {
-    let Applicants = this.state.applicants;
-
-    let applicantTitles = document.getElementById("applicantTitles");
-
-    let applicantTitle = document.createElement("option");
-
-    for (var array in Applicants) {
-      applicantTitle.setAttribute("value", array);
-      applicantTitle.innerHTML = array;
-
-      applicantTitles.appendChild(applicantTitle);
+    for (var array in Lists) {
+      return <option>{array}</option>;
     }
-  }
+  };
 
-  getFile(id, filename) {
-    let dataObject = {};
+  generateData = () => {
+    let Lists = this.props.Applicants;
 
-    dataObject.cVid = id;
+    for (var array in Lists) {
+      return Lists[array].map((item) => (
+        <ApplicantViewer key={uniqid()} itemInfo={item} />
+      ));
+    }
+  };
 
-    fetch(`https://localhost:7171/downloadCVEmployer`, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Accept: "application/json, text/plain",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      body: JSON.stringify(dataObject),
-    })
-      .then((r) => r.blob())
-      .then((blob) => {
-        var url = window.URL.createObjectURL(blob);
-        var a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
-  }
+  sortData = () => {
+    let radios = document.sortTitle.sortedSelection;
+
+    let sortOption;
+
+    for (let i = 0; i < radios.length; i++) {
+      if (radios[i].checked == true) {
+        sortOption = radios[i].value;
+      }
+    }
+
+    this.props.sortApplicants(sortOption);
+  };
 }
 
 export default Applicants;

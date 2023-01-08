@@ -19,6 +19,11 @@ import {
   faEllipsisVertical,
   faArrowRight,
   faRotate,
+  faCircleArrowDown,
+  faThumbsDown,
+  faGear,
+  faTrashCan,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -44,7 +49,13 @@ library.add(
   faBars,
   faEllipsisVertical,
   faArrowRight,
-  faRotate
+  faRotate,
+  faCircleArrowDown,
+  faThumbsUp,
+  faThumbsDown,
+  faGear,
+  faTrashCan,
+  faCheck
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

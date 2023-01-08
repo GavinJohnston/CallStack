@@ -60,7 +60,7 @@ class postManage extends React.Component {
   };
 
   generateData = () => {
-    let Lists = this.props.Lists.viewable;
+    let Lists = this.props.Lists.viewableAdvertisements;
 
     if (Lists.length > 0) {
       return Lists.map((item) => (

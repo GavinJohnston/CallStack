@@ -1,15 +1,115 @@
-#applicantTitles {
-  border: 0;
-  border-radius: 5px;
-  padding: 15px 10px;
-  text-transform: uppercase;
-  background-color: #0085a6;
-  color: white;
-  font-weight: bold;
-  margin-bottom: 20px;
+table {
+  border-collapse: collapse;
+  font-size: 0.95em;
+  width: 100%;
 }
 
 #applicationsList {
   padding: 0;
   list-style: none;
+}
+
+.applicantJobTitle {
+  font-weight: bold;
+  color: #0085a6;
+}
+
+#applicantHeader {
+  border-radius: 50px;
+}
+
+#applicantHeader > * {
+  cursor: default;
+  color: white;
+  background-color: #0085a6;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+th > * {
+  display: inline-block;
+}
+
+tr.tableRow td {
+  border-bottom: 1px solid rgb(213, 213, 213);
+  padding: 15px 0;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+td {
+  cursor: default;
+}
+
+#applicantHeader:first-child th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+#applicantHeader:last-child th:last-child {
+  border-radius: 0 15px 0 0;
+}
+
+.arrowDown {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #0085a6;
+}
+
+.arrowDown:hover {
+  filter: brightness(85%);
+}
+
+#tableOptions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#tableOptions > * {
+  display: inline-block;
+  font-size: 1.2em;
+  margin: 10px 20px 0 0;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+#tableOptions > *:hover {
+  filter: brightness(85%);
+}
+
+#sendLike {
+  color: #0f7173;
+}
+
+#deleteCV {
+  color: #f05d5e;
+}
+
+#applicantTitles {
+  margin: 10px 0;
+  padding: 5px;
+  font-weight: bold;
+  border: 0;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.noSort {
+  cursor: default;
+}
+
+#tableSort > * {
+  display: inline-block;
+  margin-right: 2em;
+}
+
+#sortTitle {
+  font-weight: bold;
+}
+
+#sortTitle > label {
+  font-weight: normal;
+  margin: 0 5px 0 15px;
+  cursor: pointer;
 }
