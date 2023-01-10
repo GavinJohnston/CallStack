@@ -240,6 +240,9 @@ namespace CallstackAPI.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Rejected")
+                        .HasColumnType("bit");
+
                     b.Property<string>("SkillLevel")
                         .HasColumnType("nvarchar(max)");
 
@@ -280,19 +283,19 @@ namespace CallstackAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ae0dd6bb-f47e-4b91-bb00-e4f759e1e823",
+                            Id = "064923c3-5490-40f0-abb9-84a5b56faacf",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "dbdcbd12-f1f0-49a5-86dd-52f99534e649",
+                            Id = "1d6701b5-23b1-4ea0-ace1-ed71d9e28eb5",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         },
                         new
                         {
-                            Id = "b1ada19a-7961-47cd-a6e9-e049fe139d8d",
+                            Id = "7b8f7a30-e263-4f1d-9a57-a055749f0460",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

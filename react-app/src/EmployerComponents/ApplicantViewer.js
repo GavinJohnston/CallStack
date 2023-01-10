@@ -25,7 +25,7 @@ function ApplicantViewer(props) {
           <input
             type="checkbox"
             name="selectCV"
-            value={props.itemInfo.advertId}
+            value={props.itemInfo.id}
             className="selectCV"
           />
         </td>

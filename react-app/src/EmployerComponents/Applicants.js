@@ -13,7 +13,7 @@ class Applicants extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="formHeader">Applicants</h2>
+        <h2 id="formHeader">View Applicants</h2>
         <div className="row">
           <div
             className="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12"
@@ -92,10 +92,23 @@ class Applicants extends React.Component {
                   </th>
                 </tr>
               </thead>
-              <tbody>{this.generateData()}</tbody>
+              <tbody>{this.generateApplicants()}</tbody>
+              <tbody>
+                <td colspan="7">
+                  <h5 id="rejectedApplicantsTitle">
+                    Rejected Applicants (Available for 30 days)
+                  </h5>
+                </td>
+              </tbody>
+              <tbody>{this.generateRejected()}</tbody>
             </table>
             <div id="tableOptions">
-              <p id="deleteCV">
+              <p
+                id="deleteCV"
+                onClick={() => {
+                  this.rejectApplicants();
+                }}
+              >
                 Reject{"  "}
                 <FontAwesomeIcon icon="fa-solid fa-trash-can" />
               </p>
@@ -110,6 +123,31 @@ class Applicants extends React.Component {
     );
   }
 
+  rejectApplicants = () => {
+    let selectedCVs = document.getElementsByClassName("selectCV");
+
+    for (let i = 0; i < selectedCVs.length; i++) {
+      let id = selectedCVs[i].value;
+
+      fetch(`https://localhost:7171/rejectApplicant/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify([
+          {
+            path: "/Rejected",
+            value: true,
+            op: "replace",
+          },
+        ]),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+    }
+  };
+
   generateTitles = () => {
     let Lists = this.props.Applicants;
 
@@ -118,13 +156,33 @@ class Applicants extends React.Component {
     }
   };
 
-  generateData = () => {
+  generateApplicants = () => {
     let Lists = this.props.Applicants;
 
-    for (var array in Lists) {
-      return Lists[array].map((item) => (
-        <ApplicantViewer key={uniqid()} itemInfo={item} />
+    if (Lists.length > 0) {
+      for (var array in Lists) {
+        return Lists[array].map((item) => (
+          <ApplicantViewer key={uniqid()} itemInfo={item} />
+        ));
+      }
+    } else {
+      return "You have no applicants.";
+    }
+  };
+
+  generateRejected = () => {
+    let Lists = this.props.Rejected;
+
+    if (Lists.length > 0) {
+      return Lists.map((item) => (
+        <ApplicantViewer
+          key={uniqid()}
+          itemInfo={item}
+          className="rejectedItems"
+        />
       ));
+    } else {
+      return "You have no rejected applicants.";
     }
   };
 

@@ -13,6 +13,7 @@ namespace CallstackAPI.Models
         public string? Website { get; set; }
         public string? SkillLevel { get; set; }
         public string? Education { get; set; }
+        public bool Rejected { get; set; }
         public DateTime Date { get; set; } = DateTime.Now.Date.ToLocalTime();
     }
 }

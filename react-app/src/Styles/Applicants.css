@@ -113,3 +113,9 @@ td {
   margin: 0 5px 0 15px;
   cursor: pointer;
 }
+
+#rejectedApplicantsTitle {
+  font-weight: light;
+  cursor: default;
+  padding-top: 30px;
+}

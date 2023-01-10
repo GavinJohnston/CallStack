@@ -20,6 +20,7 @@ class Employer extends React.Component {
       itemInfo: "",
       Applicants: [],
       sortedApplicants: [],
+      Rejected: [],
     };
   }
 
@@ -161,6 +162,7 @@ class Employer extends React.Component {
       return (
         <Applicants
           Applicants={this.state.SortedApplicants}
+          Rejected={this.state.Rejected}
           sortApplicants={(sortOption) => {
             this.sortApplicants(sortOption);
           }}
@@ -178,19 +180,7 @@ class Employer extends React.Component {
     }
   };
 
-  sortApplicants = (sortOption) => {
-    let Applicants = this.state.Applicants;
-
-    for (let list in Applicants) {
-      Applicants[list].sort((a, b) =>
-        a > b.sortOption ? 1 : b.sortOption > a.sortOption ? -1 : 0
-      );
-    }
-
-    this.setState({
-      SortedApplicants: Applicants,
-    });
-  };
+  sortApplicants = (sortOption) => {};
 
   updateList = () => {
     let status;
@@ -273,17 +263,26 @@ class Employer extends React.Component {
       .then((r) => r.json())
       .then((obj) => {
         var sortedOBJ = {};
+        var rejectedArray = [];
+
+        console.log(obj);
 
         for (var i = 0, max = obj.length; i < max; i++) {
           if (sortedOBJ[obj[i].advertTitle] == undefined) {
             sortedOBJ[obj[i].advertTitle] = [];
           }
-          sortedOBJ[obj[i].advertTitle].push(obj[i]);
+
+          if (obj[i].rejected == true) {
+            rejectedArray.push(obj[i]);
+          } else {
+            sortedOBJ[obj[i].advertTitle].push(obj[i]);
+          }
         }
 
         this.setState({
           Applicants: sortedOBJ,
           SortedApplicants: this.state.Applicants,
+          Rejected: rejectedArray,
         });
       });
   }

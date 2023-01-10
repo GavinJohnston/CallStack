@@ -16,13 +16,14 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using CallstackAPI.Services;
-using Microsoft.AspNetCore.JsonPatch;
 using System.IO.Compression;
 using Microsoft.EntityFrameworkCore.Metadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Utilities;
+using iText.Commons.Actions.Contexts;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CallstackAPI.Controllers;
 
@@ -295,6 +296,8 @@ public class CallstackController : ControllerBase
                     CVVObj.Education = element.Education;
                     CVVObj.Email = element.Email;
                     CVVObj.CVid = element.CVId;
+                    CVVObj.Id = element.Id;
+                    CVVObj.Rejected = element.Rejected;
 
                     CVsViewable.Add(CVVObj);
                 }
@@ -473,6 +476,27 @@ public class CallstackController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok(advert);
+    }
+
+    [HttpPatch]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Route("rejectApplicant/{id}")]
+    public async Task<IActionResult> rejectApplicant(int id, [FromBody] JsonPatchDocument<CVView> patchEntity)
+    {
+        var applicant = await _context.CVView.FindAsync(id);
+
+        if (applicant == null)
+        {
+            return NotFound();
+        }
+
+        patchEntity.ApplyTo(applicant, ModelState);
+
+        _context.Entry(applicant).State = EntityState.Modified;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(applicant);
     }
 
     // services

@@ -14,6 +14,7 @@ namespace CallstackAPI.Services
         public string? Website { get; set; }
         public string? SkillLevel { get; set; }
         public string? Education { get; set; }
+        public bool Rejected { get; set; }
     }
 }
 

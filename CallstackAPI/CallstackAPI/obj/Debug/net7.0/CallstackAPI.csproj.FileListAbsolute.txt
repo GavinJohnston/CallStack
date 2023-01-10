@@ -70,8 +70,6 @@
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Mono.TextTemplating.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/System.CodeDom.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/CallstackAPI.staticwebassets.runtime.json
-/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/MessagePack.dll
-/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/MessagePack.Annotations.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.UI.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Razor.Language.dll
@@ -94,7 +92,6 @@
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.DiaSymReader.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.DotNet.Scaffolding.Shared.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.NET.StringTools.dll
-/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.VisualStudio.Debugger.Contracts.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -297,3 +294,13 @@
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/itext.commons.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.DotNet.PlatformAbstractions.dll
 /Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/BouncyCastle.Crypto.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Authorization.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Metadata.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.CodeAnalysis.Elfie.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Embedded.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/Users/gavin/Projects/CallStack/CallstackAPI/CallstackAPI/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll

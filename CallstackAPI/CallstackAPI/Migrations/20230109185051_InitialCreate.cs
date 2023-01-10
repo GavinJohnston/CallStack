@@ -47,6 +47,7 @@ namespace CallstackAPI.Migrations
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SkillLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rejected = table.Column<bool>(type: "bit", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -279,9 +280,9 @@ namespace CallstackAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "ae0dd6bb-f47e-4b91-bb00-e4f759e1e823", null, "Visitor", "VISITOR" },
-                    { "b1ada19a-7961-47cd-a6e9-e049fe139d8d", null, "Administrator", "ADMINISTRATOR" },
-                    { "dbdcbd12-f1f0-49a5-86dd-52f99534e649", null, "Employer", "EMPLOYER" }
+                    { "064923c3-5490-40f0-abb9-84a5b56faacf", null, "Visitor", "VISITOR" },
+                    { "1d6701b5-23b1-4ea0-ace1-ed71d9e28eb5", null, "Employer", "EMPLOYER" },
+                    { "7b8f7a30-e263-4f1d-9a57-a055749f0460", null, "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(
