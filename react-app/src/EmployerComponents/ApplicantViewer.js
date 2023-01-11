@@ -21,17 +21,27 @@ function ApplicantViewer(props) {
             title="Download CV"
           />
         </td>
-        <td>
-          <input
-            type="checkbox"
-            name="selectCV"
-            value={props.itemInfo.id}
-            className="selectCV"
-          />
-        </td>
+        <td>{viewOption()}</td>
       </tr>
     </>
   );
+
+  function viewOption() {
+    if (props.itemInfo.rejected == true) {
+      return (
+        <FontAwesomeIcon icon="fa-solid fa-trash-can" className="trashCan" />
+      );
+    } else {
+      return (
+        <input
+          type="checkbox"
+          name="selectCV"
+          value={props.itemInfo.id}
+          className="selectCV"
+        />
+      );
+    }
+  }
 
   function getFile() {
     let dataObject = {};

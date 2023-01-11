@@ -92,15 +92,17 @@ class Applicants extends React.Component {
                   </th>
                 </tr>
               </thead>
-              <tbody>{this.generateApplicants()}</tbody>
+              <tbody id="applicantBody">{this.generateApplicants()}</tbody>
               <tbody>
-                <td colspan="7">
+              <tr>
+                <td colSpan="7">
                   <h5 id="rejectedApplicantsTitle">
                     Rejected Applicants (Available for 30 days)
                   </h5>
                 </td>
+                </tr>
               </tbody>
-              <tbody>{this.generateRejected()}</tbody>
+              <tbody id="rejectedBody">{this.generateRejected()}</tbody>
             </table>
             <div id="tableOptions">
               <p
@@ -110,7 +112,7 @@ class Applicants extends React.Component {
                 }}
               >
                 Reject{"  "}
-                <FontAwesomeIcon icon="fa-solid fa-trash-can" />
+                <FontAwesomeIcon icon="fa-solid fa-thumbs-down" />
               </p>
               <p id="sendLike">
                 Like {"  "}
@@ -159,14 +161,20 @@ class Applicants extends React.Component {
   generateApplicants = () => {
     let Lists = this.props.Applicants;
 
-    if (Lists.length > 0) {
+      if(Object.keys(Lists).length > 0) {
       for (var array in Lists) {
+        if(Lists[array].length > 0) {
         return Lists[array].map((item) => (
-          <ApplicantViewer key={uniqid()} itemInfo={item} />
+          <ApplicantViewer
+            key={uniqid()}
+            itemInfo={item}
+            
+          />
         ));
+        }
       }
     } else {
-      return "You have no applicants.";
+      return "No Applicants available."
     }
   };
 

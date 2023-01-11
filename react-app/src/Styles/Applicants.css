@@ -41,14 +41,6 @@ td {
   cursor: default;
 }
 
-#applicantHeader:first-child th:first-child {
-  border-radius: 10px 0 0 0;
-}
-
-#applicantHeader:last-child th:last-child {
-  border-radius: 0 15px 0 0;
-}
-
 .arrowDown {
   font-size: 1.5em;
   cursor: pointer;
@@ -118,4 +110,12 @@ td {
   font-weight: light;
   cursor: default;
   padding-top: 30px;
+}
+
+#applicantBody:nth-of-type(even) {
+  background-color: rgb(234, 234, 234);
+}
+
+#rejectedBody > * {
+  color: rgb(109, 109, 109);
 }
