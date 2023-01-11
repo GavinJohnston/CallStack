@@ -37,6 +37,7 @@ function ApplicantViewer(props) {
           type="checkbox"
           name="selectCV"
           value={props.itemInfo.id}
+          data={props.itemInfo.advertTitle}
           className="selectCV"
         />
       );

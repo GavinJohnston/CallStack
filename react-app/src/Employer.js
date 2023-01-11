@@ -14,13 +14,12 @@ class Employer extends React.Component {
     super(props);
     this.state = {
       viewableAdvertisements: [],
-      notApproved: [],
-      approved: [],
+      notApprovedAdverts: [],
+      approvedAdverts: [],
       tabView: "Account",
-      itemInfo: "",
-      Applicants: [],
-      sortedApplicants: [],
-      Rejected: [],
+      advertInfo: "",
+      applicants: [],
+      rejected: [],
     };
   }
 
@@ -145,10 +144,10 @@ class Employer extends React.Component {
       return (
         <PostManage
           Lists={this.state}
-          ViewDataPage={(itemInfo) => {
+          ViewDataPage={(advertInfo) => {
             this.setState({
               tabView: "DataPage",
-              itemInfo: itemInfo,
+              advertInfo: advertInfo,
             });
           }}
           updateList={() => {
@@ -161,11 +160,8 @@ class Employer extends React.Component {
     } else if (this.state.tabView === "Applicants") {
       return (
         <Applicants
-          Applicants={this.state.SortedApplicants}
-          Rejected={this.state.Rejected}
-          sortApplicants={(sortOption) => {
-            this.sortApplicants(sortOption);
-          }}
+          Applicants={this.state.applicants}
+          Rejected={this.state.rejected}
         />
       );
     } else if (this.state.tabView === "DataPage") {
@@ -174,21 +170,20 @@ class Employer extends React.Component {
           tabView={() => {
             this.setTab("PostManage");
           }}
-          Item={this.state.itemInfo}
+          Item={this.state.advertInfo}
         />
       );
     }
   };
 
-  sortApplicants = (sortOption) => {};
 
   updateList = () => {
     let status;
 
     if (document.getElementsByClassName("deselected").length == 0) {
       this.setState({
-        viewableAdvertisements: this.state.approved.concat(
-          this.state.notApproved
+        viewableAdvertisements: this.state.approvedAdverts.concat(
+          this.state.notApprovedAdverts
         ),
       });
     } else if (document.getElementsByClassName("deselected").length == 1) {
@@ -203,11 +198,11 @@ class Employer extends React.Component {
 
     if (status == "showAwaiting") {
       this.setState({
-        viewableAdvertisements: this.state.approved,
+        viewableAdvertisements: this.state.approvedAdverts,
       });
     } else if (status == "showLive") {
       this.setState({
-        viewableAdvertisements: this.state.notApproved,
+        viewableAdvertisements: this.state.notApprovedAdverts,
       });
     }
   };
@@ -245,8 +240,8 @@ class Employer extends React.Component {
     const Approved = await responseApproved.json();
 
     this.setState({
-      approved: Approved,
-      notApproved: AwaitingApproval,
+      approvedAdverts: Approved,
+      notApprovedAdverts: AwaitingApproval,
       viewableAdvertisements: Approved.concat(AwaitingApproval),
     });
 
@@ -280,9 +275,8 @@ class Employer extends React.Component {
         }
 
         this.setState({
-          Applicants: sortedOBJ,
-          SortedApplicants: this.state.Applicants,
-          Rejected: rejectedArray,
+          applicants: sortedOBJ,
+          rejected: rejectedArray,
         });
       });
   }

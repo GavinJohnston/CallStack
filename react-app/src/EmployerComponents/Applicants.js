@@ -151,11 +151,11 @@ class Applicants extends React.Component {
   };
 
   generateTitles = () => {
-    let Lists = this.props.Applicants;
+    // let Lists = this.props.Applicants;
 
-    for (var array in Lists) {
-      return <option>{array}</option>;
-    }
+    // for (var array in Lists) {
+    //   return <option>{array}</option>;
+    // }
   };
 
   generateApplicants = () => {
@@ -192,20 +192,6 @@ class Applicants extends React.Component {
     } else {
       return "You have no rejected applicants.";
     }
-  };
-
-  sortData = () => {
-    let radios = document.sortTitle.sortedSelection;
-
-    let sortOption;
-
-    for (let i = 0; i < radios.length; i++) {
-      if (radios[i].checked == true) {
-        sortOption = radios[i].value;
-      }
-    }
-
-    this.props.sortApplicants(sortOption);
   };
 }
 
